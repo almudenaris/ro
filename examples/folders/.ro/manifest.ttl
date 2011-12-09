@@ -1,0 +1,84 @@
+@base <../> .
+@prefix ore: <http://www.openarchives.org/ore/terms/> .
+@prefix ro: <http://purl.org/wf4ever/ro#> .
+@prefix ao: <http://purl.org/ao/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfg: <http://www.w3.org/2004/03/trix/rdfg-1/> .
+
+<.> a ro:ResearchObject, ore:Aggregation;
+    # ie. this file
+    ore:isDescribedBy <.ro/manifest.ttl>;
+    ore:aggregates 
+        <.ro/root>,
+        <file1.txt>, 
+        <a/>, 
+        <a/file2.txt>, 
+        <b/>, 
+        <b/file3.txt>, 
+        <b/c/>,
+        <b/c/file4.txt>, 
+        <http://www.example.com/external.txt>,
+        <http://www.example.org/another-ro/> . 
+
+# Required proxies for every ro:Resource,
+# including folders, folder content and external resources.
+# dc metadata not shown for brevity.
+#
+# (Note: These proxies are *not* ro:FolderEntry instances - see 
+# <.ro/root.ttl>  for the top-level folder hierarchy and
+# FolderEntries)
+:proxy1 a ore:Proxy;
+    ore:proxyFor <.ro/root>;
+    ore:proxyIn <.>.
+:proxy2 a ore:Proxy;
+    ore:proxyFor <file1.txt>;
+    ore:proxyIn <.>.
+:proxy3 a ore:Proxy;
+    ore:proxyFor <a/>;
+    ore:proxyIn <.>.
+:proxy4 a ore:Proxy;
+    ore:proxyFor <a/file2.txt>;
+    ore:proxyIn <.>.
+# ...
+:proxy10 a ore:Proxy;
+    ore:proxyFor <http://www.example.org/another-ro/>;
+    ore:proxyIn <.>.
+        
+
+
+# Links to other ore:ResourceMap instances describing the
+# folders. We don't assign resources to folders within the 
+# manifest.
+#
+# (Note that these resource maps are not ro:Manifest instances, as the
+# folders are not (neccessarily) ResearchObjects.
+<.ro/root> a ro:Folder;
+    ore:isDescribedBy <.ro/root.ttl> .
+
+<file1.txt> a ro:Resource .
+
+<a/> a ro:Folder;
+    ore:isDescribedBy <.ro/root/a.ttl> .
+
+<a/file2.txt> a ro:Resource .
+
+<b/> a ro:Folder;
+    ore:isDescribedBy <.ro/root/b.ttl> .
+
+<b/file3.txt> a ro:Resource .
+
+<b/c/> a ro:Folder;
+    ore:isDescribedBy <.ro/root/b/c.ttl> .
+
+<b/c/file4.txt> a ro:Resource .
+
+# an "external" resource
+<http://www.example.com/external.txt> a ro:Resource .
+
+# An aggregated (and external) resource object
+<http://www.example.org/another-ro/> a ro:Resource, ro:ResearchObject; 
+    ore:isDescribedBy <http://www.example.org/another-ro/.ro/manifest.ttl> .
+
+

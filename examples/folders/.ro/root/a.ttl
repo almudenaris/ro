@@ -1,0 +1,63 @@
+# Base is the research object 
+@base <../../> .
+@prefix ore: <http://www.openarchives.org/ore/terms/> .
+@prefix ro: <http://purl.org/wf4ever/ro#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<a/> a ro:Folder, ro:Resource, ore:AggregatedResource, ore:Aggregation;
+
+    # The research object we belong in
+    # TODO: Should this be a (functional?) subproperty ro:isAggregatedByRO
+    ore:isAggregatedBy <.>;
+
+    # The containing folder (..)
+    # TODO: Should this be a functional subproperty ro:parentFolder ? 
+    ore:isAggregatedBy <.ro/root>;
+
+    # the resource map (this file)
+    ore:isDescribedBy <.ro/root/a.ttl>;
+    # The (direct) content of this folder
+    ore:aggregates 
+        <a/file2.txt>,
+        <http://www.example.com/external.txt> . 
+
+
+# Useful links and types, including links back to research object.
+# 
+# Every resource aggregated by this folder SHOULD also be aggregated
+# by the research object <.>
+<.> a ro:ResearchObject, ore:Aggregation;
+    ore:isDescribedBy <.ro/manifest.ttl> .
+
+<.ro/root> a ro:Folder, ore:Aggregation;
+    ore:isDescribedBy <.ro/root.ttl> .    
+
+<a/file2.txt> a ro:Resource, ore:AggregatedResource;
+    ore:isAggregatedBy <.> .
+
+<http://www.example.com/external.txt> a ro:Resource, ore:AggregatedResource;
+    ore:isAggregatedBy <.> .
+
+
+
+# The folder entries, which assign the entry names to 
+# each of the aggregated resources. 
+#
+# In a ro:Folder *every* ore:aggregates resource MUST have a
+# corresponding ro:FolderEntry, each with a unique ro:entryName
+
+_:entry1 a ro:FolderEntry, ore:Proxy;
+    ro:entryName "file2.txt";
+    ore:proxyFor <a/file2.txt>;
+    ore:proxyIn <a/> .
+
+_:entry2 a ro:FolderEntry, ore:Proxy;
+    # Notice how the ro:entryName does not need
+    # to match the URI in ore:proxyFor
+    ro:entryName "other.txt";
+    # The resource of the folder can be "external"
+    ore:proxyFor <http://www.example.com/external.txt>;
+    ore:proxyIn <a/> .
+
+

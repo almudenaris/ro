@@ -1,0 +1,38 @@
+# Base is the research object 
+@base <../../../> .
+@prefix ore: <http://www.openarchives.org/ore/terms/> .
+@prefix ro: <http://purl.org/wf4ever/ro#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<b/c/> a ro:Folder, ro:Resource, ore:AggregatedResource, ore:Aggregation;
+    # The research object we belong in
+    ore:isAggregatedBy <.> ;
+    # The parent folder
+    ore:isAggregatedBy <b/> ;
+    # the resource map (this file)
+    ore:isDescribedBy <.ro/root/b/c.ttl>;
+    # The (direct) content of this folder
+    ore:aggregates 
+        <b/c/file4.txt> .
+
+
+# Useful links and types, including links back to research object.
+<.> a ro:ResearchObject, ore:Aggregation;
+    ore:isDescribedBy <.ro/manifest.ttl> .
+
+<b/> a ro:Folder, ore:Aggregation;
+    ore:isDescribedBy <.ro/root/b.ttl> .
+
+<b/file4.txt> a ro:Resource, ore:AggregatedResource;
+    ore:isAggregatedBy <.> .
+
+
+
+# The folder entry
+_:entry1 a ro:FolderEntry, ore:Proxy;
+    ro:entryName "file4.txt";
+    ore:proxyFor <b/c/file4.txt>;
+    ore:proxyIn <b/> .
+
+

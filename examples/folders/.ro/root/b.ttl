@@ -1,0 +1,63 @@
+# Base is the research object 
+@base <../../> .
+@prefix ore: <http://www.openarchives.org/ore/terms/> .
+@prefix ro: <http://purl.org/wf4ever/ro#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<b/> a ro:Folder, ro:Resource, ore:AggregatedResource, ore:Aggregation;
+    # The research object we belong in
+    ore:isAggregatedBy <.>;
+    # The containing folder (..)
+    ore:isAggregatedBy <.ro/root>
+    # the resource map (this file)
+    ore:isDescribedBy <.ro/root/b.ttl>;
+    # The (direct) content of this folder
+    ore:aggregates 
+        <b/c/>,
+        <b/file3.txt>, 
+        <http://www.example.com/external.txt> . 
+
+
+# Useful links and types, including links back to research object.
+# 
+# Every resource aggregated by this folder SHOULD also be aggregated
+# by the research object <.>
+<.> a ro:ResearchObject, ore:Aggregation;
+    ore:isDescribedBy <.ro/manifest.ttl> .
+
+<.ro/root> a ro:Folder, ore:Aggregation;
+    ore:isDescribedBy <.ro/root.ttl> .
+
+
+<b/c/> a ro:Folder, ro:Resource, ore:AggregatedResource;
+    ore:isAggregatedBy <.>;
+    ore:isDescribedBy <.ro/root/b/c.ttl> .
+
+<b/file3.txt> a ro:Resource, ore:AggregatedResource;
+    ore:isAggregatedBy <.> .
+
+<http://www.example.com/external.txt> a ro:Resource, ore:AggregatedResource;
+    ore:isAggregatedBy <.> .
+
+
+# The folder entries
+_:entry1 a ro:FolderEntry, ore:Proxy;
+    ro:entryName "c";
+    ore:proxyFor <b/c/>;
+    ore:proxyIn <b/> .
+
+_:entry2 a ro:FolderEntry, ore:Proxy;
+    ro:entryName "file3.txt";
+    ore:proxyFor <b/file3.txt>;
+    ore:proxyIn <b/> .
+
+
+# This "external" resource is also in <a/> with a different entryName -
+# but that is a different ro:FolderEntry
+_:entry3 a ro:FolderEntry, ore:Proxy;
+    ro:entryName "external.txt";
+    ore:proxyFor <http://www.example.com/external.txt>;
+    ore:proxyIn <b/> .
+
+
