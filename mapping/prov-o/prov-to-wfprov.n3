@@ -1,0 +1,91 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov-o/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+
+: rdfs:label "prov-to-wfprov";
+  rdfs:comment """To use these filters together with a wfdesc workflow and
+  PROV-O provenance, use cwm:
+
+  cwm helloworld.wfdesc.ttl helloworld.prov.rdf prov-to-wfprov.n3 --think --filter=prov-to-wfprov.n3
+ 
+  Remove the --filter=.. parameter to see all the combined information
+  instead of just the added information.
+ """ ;
+ rdfs:seeAlso <http://www.w3.org/2000/10/swap/doc/cwm.html> .
+
+
+# ProcessRun
+{ ?activity a prov:Activity;
+      prov:hadRecipe ?recipe .
+  ?recipe a wfdesc:Process } => 
+{ ?activity a wfprov:ProcessRun;
+      wfprov:describedByProcess ?recipe }  .
+
+# Workflow
+{ ?activity a prov:Activity;
+     prov:hadRecipe ?recipe . 
+  ?recipe a wfdesc:Workflow } => 
+{ ?activity wfprov:describedByWorkflow ?recipe } .
+
+# usedInput
+{ ?activity a prov:Activity;
+      prov:hadQualifiedUsage [
+          prov:hadQualifiedEntity ?entity;
+          prov:hadRole ?role
+      ] .
+  ?role a wfdesc:Input } =>
+{ ?entity a wfprov:Artifact ;
+      wfprov:describedByParameter ?role .
+  ?activity wfprov:usedInput ?entity } .
+
+# wasOutputFrom  
+{ ?activity a prov:Activity;
+      prov:hadQualifiedGeneration [
+          prov:hadQualifiedEntity ?entity;
+          prov:hadRole ?role
+      ] .
+  ?role a wfdesc:Output } =>
+{ ?entity a wfprov:Artifact ;
+      wfprov:wasOutputFrom ?activity ;
+      wfprov:describedByParameter ?role } .
+
+# wasComplementOf
+# NOTE: taverna-prov needs to use wasComplementOf for artifacts output
+# by both a processor and workflow due to prov:wasGeneratedBy being 
+# functional
+{  ?aliasEntity a wfprov:Artifact ;
+       prov:wasComplementOf ?entity } =>
+{ ?entity a wfprov:Artifact ;
+      # TODO: Does wfprov need an equivalent to wasComplementOf?
+      = ?aliasEntity ;
+      } .
+
+
+# wasPartOfWorkflowRun
+{ ?processRun a wfprov:ProcessRun ;
+   prov:wasControlledBy ?workflowRun .
+?workflowRun a wfprov:ProcessRun ;
+   wfprov:describedByWorkflow ?workflow ;
+    } =>
+{ ?processRun wfprov:wasPartOfWorkflowRun ?workflowRun } .
+
+
+# WorkflowEngine extraction - quite taverna-prov specific which assumes
+# that the engine must also have created the provenance container based
+# on the workflow run
+{ ?workflowRun a wfprov:ProcessRun ;
+      wfprov:describedByWorkflow ?workflow . 
+  ?provenanceContainer a prov:ProvenanceContainer ;
+      prov:wasGeneratedBy [ 
+        prov:wasControlledBy ?workflowEngine;
+        prov:used ?workflowRun ]
+      } => 
+{ ?workflowRun wfprov:wasEnactedBy ?workflowEngine .
+  ?workflowEngine a wfprov:WorkflowEngine .
+} .      
+
+
+
