@@ -28,7 +28,8 @@
 { ?activity a prov:Activity;
      prov:hadRecipe ?recipe . 
   ?recipe a wfdesc:Workflow } => 
-{ ?activity wfprov:describedByWorkflow ?recipe } .
+{ ?activity a wfprov:WorkflowRun;
+   wfprov:describedByWorkflow ?recipe } .
 
 # usedInput
 { ?activity a prov:Activity;
