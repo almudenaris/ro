@@ -81,13 +81,15 @@ wf4ever:serviceURI rdf:type owl:DatatypeProperty ;
 
 ###  http://purl.org/wf4ever/wf4ever#wsdlOperationName
 
-wf4ever:wsdlOperationName rdf:type owl:DatatypeProperty .
+wf4ever:wsdlOperationName rdf:type owl:DatatypeProperty ;
+                rdfs:domain wf4ever:SOAPService .
 
 
 
 ###  http://purl.org/wf4ever/wf4ever#wsdlPortName
 
-wf4ever:wsdlPortName rdf:type owl:DatatypeProperty .
+wf4ever:wsdlPortName rdf:type owl:DatatypeProperty ;
+                rdfs:domain wf4ever:SOAPService .
 
 
 
@@ -210,14 +212,14 @@ wf4ever:WebService rdf:type owl:Class ;
 
 wf4ever:WorkflowResearchObject rdf:type owl:Class ;
                                
-                               owl:equivalentClass [ rdf:type owl:Class ;
-                                                     owl:intersectionOf ( ro:ResearchObject
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty ore:aggregates ;
-                                                                            owl:someValuesFrom wfdesc:Workflow
-                                                                          ]
-                                                                        )
-                                                   ] ;
+#                               owl:equivalentClass [ rdf:type owl:Class ;
+#                                                     owl:intersectionOf ( ro:ResearchObject
+#                                                                          [ rdf:type owl:Restriction ;
+#                                                                            owl:onProperty ore:aggregates ;
+#                                                                            owl:someValuesFrom wfdesc:Workflow
+#                                                                          ]
+#                                                                        )
+#                                                   ] ;
                                
                                rdfs:comment "A workflow research object is a research object that contains at least one workflow description." .
 
