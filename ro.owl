@@ -51,26 +51,6 @@
 #################################################################
 
 
-###  http://purl.org/wf4ever/ro#annotatesAggregatedResource
-
-ro:annotatesAggregatedResource rdf:type owl:ObjectProperty ;
-                               
-                               rdfs:comment """ro:annotatesAggregatedResource specifies that an ao:Annotation annotates an aggregated ro:Resource. 
-                               
-When used on an ro:AggregatedAnnotation, both the domain and range of this property must ore:isAggregatedBy the same ro:ResearchObject.  
-
-TODO: Should also ro:ResearchObject and ore:Proxy be in the range of this property, or is this subproperty even needed?
-"""@en ;
-                               
-                               rdfs:domain <http://purl.org/ao/Annotation> ;
-                               
-                               rdfs:subPropertyOf <http://purl.org/ao/annotatesResource> ;
-                               
-                               rdfs:range ro:Resource .
-
-
-
-
 
 #################################################################
 #
@@ -106,11 +86,11 @@ TODO: Need a functional property to specify the top level folder structure of an
 #################################################################
 
 
-###  http://purl.org/wf4ever/ro#AggregatedAnnotation
+###  http://purl.org/wf4ever/ro#Annotation
 
-ro:AggregatedAnnotation rdf:type owl:Class ;
+ro:Annotation rdf:type owl:Class ;
                         
-                        rdfs:subClassOf ro:SemanticAnnotation ,
+                        rdfs:subClassOf ao:GraphAnnotation ,
                                         ore:AggregatedResource ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty ore:isAggregatedBy ;
@@ -140,7 +120,7 @@ Instances of this class are used to annotated resources aggregated within the ag
 
 It is possible for the annotation to also annotate non-aggregated resources, but as above, at least one of them needs to be part of the RO or the RO itself.
 
-As a subclass of ro:SemanticAnnotation the ao:body must point to an rdfg:Graph which contains the actual annotation. """@en .
+As a subclass of ao:GraphAnnotation the ao:body must point to an rdfg:Graph which contains the actual annotation. """@en .
 
 
 
@@ -243,38 +223,12 @@ ro:Resource rdf:type owl:Class ;
 
 This specialisation requires that there exists an ore:Proxy which is ore:proxyFor this resource, and which is ore:proxyIn the same ro:ResearchObject the resource ore:isAggregatedBy. Any annotations on such a proxy will descrive the ro:Resource within that particular ro:ResearchObject, in particular dct:creator and dct:created on the proxy will specify who added the resource to the aggregation at what time.
 
-Note that annotations (ro:AggregatedAnnotation) can be added to both the ro:Resource and the ore:Proxy - depending on if the annotation is seen to be globally true (such as the provenance of how the resource was created) or locally true within the Research Object (such as the the resource playing the role of a wf4ever:Dataset).
+Note that annotations (ro:Annotation) can be added to both the ro:Resource and the ore:Proxy - depending on if the annotation is seen to be globally true (such as the provenance of how the resource was created) or locally true within the Research Object (such as the the resource playing the role of a wf4ever:Dataset).
 
-Not all resources aggregated by an ro:ResearchObject are ro:Resource instances, in particular ro:AggregatedAnnotations will also be aggregated, but will not be \"true\" RO resources (and thus don't need their own ore:Proxy).  
+Not all resources aggregated by an ro:ResearchObject are ro:Resource instances, in particular ro:Annotations will also be aggregated, but are not required to also be ro:Resources (needing their own ore:Proxy).  
 
 Aggregated resources MAY also be organised in (potentially nested) ro:Folders to reflect a file-system like structure. Note that any such resources SHOULD also be aggregated in the \"mother\" ro:ResearchObject.
 """@en .
-
-
-
-###  http://purl.org/wf4ever/ro#SemanticAnnotation
-
-ro:SemanticAnnotation rdf:type owl:Class ;
-                      
-                      rdfs:subClassOf <http://purl.org/ao/Annotation> ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty <http://purl.org/ao/body> ;
-                                        owl:allValuesFrom rdfg:Graph
-                                      ] ;
-                      
-                      rdfs:comment """An ro:SemanticAnnotation is a specialisation of ao:Annotation which requires that ao:body points to an RDF Graph.
-
-This might be a Named Graph or a resource which can be resolved separately from the URI given by ao:body.
-
-This graph SHOULD mention the resources identified by ao:annotatesResource from this annotation, preferably by using their URIs as subject or object of statements.
-
-Note that this use of ao:body is distinct from ao:hasTopic, which also allows the association of a an RDF Graph with an ao:Annotation, but which also implies that this graph is the \"topic\" (subproperty of bookmark:hasTopic) of the annotated resource. This class does not require this interpretation, it is merely enough that the annotation body mentions the annotated resource, for instance to give it a dc:title or to relate two annotated resources.  Also note that the next version of the AO ontology (v2) might change this definition of ao:hasTopic, removing the need for this class."""@en ;
-                      
-                      rdfs:seeAlso <http://code.google.com/p/annotation-ontology/wiki/GraphsAnnotations> ,
-                                   <http://purl.org/ao/body> ,
-                                   <http://purl.org/ao/hasTopic> ,
-                                   <http://www.w3.org/2001/Annotea/User/BookmarkSchema> ,
-                                   <http://www.w3.org/2002/01/bookmark#hasTopic> .
 
 
 
