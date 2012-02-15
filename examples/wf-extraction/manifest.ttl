@@ -21,10 +21,9 @@
     dct:created "2011-12-02T15:02:10Z"^^xsd:dateTime ;
     dct:creator [ a foaf:Person; foaf:name "Stian Soiland-Reyes" ] .
 
-:ann1 a ro:SemanticAnnotation ;
+:ann1 a ro:Annotation, ao:GraphAnnotation ;
     ao:body <.ro/ann1> ;
-    ro:annotatesAggregatedResource <a_workflow.t2flow> ;
-    ao:annotatesResource <.> ;
+    ro:annotatesResource <a_workflow.t2flow>, <.> ;
     dct:created "2011-12-02T15:02:13Z"^^xsd:dateTime ;
     dct:creator [ a foaf:Agent ; foaf:name "t2flow workflow annotation extractor" ] .
 
