@@ -9,6 +9,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix ro: <http://purl.org/wf4ever/ro#> .
+@prefix ao: <http://purl.org/ao/> .
 @base <http://purl.org/wf4ever/ro> .
 
 <http://purl.org/wf4ever/ro> rdf:type owl:Ontology ;
