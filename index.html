@@ -16,8 +16,7 @@
          };
 
  var extraReferences = {
-"EXEC":"Executable Papers Grand Challenge. URL: <a href=\"http://www.executablepapers.com/\">http://www.executablepapers.com/</a>",
-
+"RO-MODEL":"Wf4Ever RO Model. URL: <a href=\"http://wf4ever.github.com/ro\">http://wf4ever.github.com/ro/</a>",
 "BECHHOFER11":"Sean Bechhofer et. al.<cite>Linked Data is Not Enough for Scientists</cite>, Future Generation Computer Systems, DOI: <a href=\"http://dx.doi.org/10.1016/j.future.2011.08.004\">201110.1016/j.future.2011.08.004</a>",
 
 "FORCE11": "Phil Bourne, Tim Clark et. al. <cite><a href=\"http://force11.org/white_paper\">Improving Future Research Communication and e-Scholarship</a>.</cite> FORCE11 Manifesto. URL: <a href=\"http://force11.org/white_paper\">http://force11.org/white_paper</a>",
@@ -67,11 +66,11 @@ var respecConfig = {
  
           // editors, add as many as you like
           // only "name" is required
-          editors:  [
-              { name: "Stian Soiland-Reyes", url: "http://soiland-reyes.com/stian/",
-                company: "University of Manchester" },
-              { name: "Sean Bechhofer", url: "http://www.cs.manchester.ac.uk/~seanb/",
-                company: "University of Manchester" },
+           editors:  [
+              { name: "TODO", url: "",
+                company: "TODO" },
+          //    { name: "Sean Bechhofer", url: "http://www.cs.manchester.ac.uk/~seanb/",
+          //      company: "University of Manchester" },
           ],
  
           // authors, add as many as you like. 
@@ -81,16 +80,16 @@ var respecConfig = {
           authors:  [
               { name: "Khalid Belhajjame", url: "http://semanticweb.org/wiki/Khalid_Belhajjame",
                 company: "University of Manchester" },
-              { name: "Graham Klyne",
-                company: "University of Oxford" },
+          //    { name: "Graham Klyne",
+          //      company: "University of Oxford" },
               { name: "Daniel Garijo", url: "http://mayor2.dia.fi.upm.es/oeg-upm/index.php/es/phdstudents/28-dgarijo",
                 company: "UPM" },
               { name: "Oscar Corcho", url: "http://mayor2.dia.fi.upm.es/oeg-upm/index.php/es/teachers/11-ocorcho",
                 company: "UPM" },
               { name: "Esteban Garc&#237;a Cuesta",
                 company: "iSOCO" },
-              { name: "Raul Palma",
-                company: "PSNC" }
+          //    { name: "Raul Palma",
+          //      company: "PSNC" }
          ],
           
           // name of the WG
@@ -108,52 +107,56 @@ var respecConfig = {
 </head>
 <body>
 
-<section id="abstract"></section><!-- abstract --><section id="introduction"><h2>Introduction</h2>
+<section id="abstract">
+<p>
+This document is to provide an accessible  introduction to the Wf4Ever RO Model so that readers can understand &quot;what&quot; the RO Model provides and &quot;how&quot; the RO Ontologies and Vocabularies can be used to describe an aggregation object in a structured format.
+</p>
+</section><!-- abstract -->
 
-<p>Scientific workflows are used to describe series of structured activities and computations that arise in scientific problem-solving, providing scientists from virtually any discipline with a means to specify and enact their experiments. From a computational perspective, such experiments (workflows) can be defined as directed acyclic graphs where the nodes correspond to analysis operations, which can be supplied locally or by third party web services, and where the edges specify the flow of data between those operations.</p>
+<section id="introduction"><h2>Introduction</h2>
 
-<p>Besides being useful to describe and execute computations, workflows also allow encoding of scientific methods and know-how. Hence they are valuable objects from a scholarly point of view, for several reasons: (i) to allow assessment of the reproducability of results; (ii) to be reused by the same or by a different scientist; (iii) to be repurposed for other goals than those for which it was originally built; (iv) to validate the method that led to a new scientific insight; (v) to serve as live-tutorials, exposing how to take advantage of existing data infrastructure, etc. This follows a trend that can be observed in disciplines such as Biology and Astronomy, with other types of objects, such as databases, increasingly becoming part of the research outcomes of an individual or a group, and hence also being shared, cited, reused, versioned, etc. </p>
-
-<p>Challenges for the preservation of scientific workflows in data intensive science, include: (a) the consideration of complex digital objects that comprise both their static and dynamic aspects, including workflow models, the provenance of their executions, and interconnections between workflows and related resources, (b) the provision of access, manipulation, sharing, reuse and evolution functions to these complex digital objects, (c) integral lifecycle management functions for workflows and their associated materials.</p>
-
-<p>Thus the use of workflow specifications on their own does not guarantee to support reusability, shareability, reproducibility, or better understanding of scientific methods. Workflow environment tools evolve across the years, or they may even disappear. The services and tools used by the workflow may change or evolve too. Finally, the data used by the workflow may be updated or no longer available. To overcome these issues, additional information may be needed. This includes annotations to describe the operations performed by the workflow; annotations to provide details like authors, versions, citations, etc.; links to other resources, such as the provenance of the results obtained by executing the workflow, datasets used as input, etc.. Such additional annotations enable a comprehensive view of the experiment, and encourage inspection of the different elements of that experiment, providing the scientist with a picture of the strengths and weaknesses of the digital experiment in relation to decay, adaptability, stability, etc.</p>
-
-<p>These richly annotation objects are what we call workflow-centric Research Objects. The notion of Research Object (as discussed in [[BECHHOFER11]]) is a general idea that aims to extend traditional publication mechanisms and take us "beyond the pdf" [[FORCE11]]]. An RO is an aggregation of resources along with annotations on those resources. The aggregation itself may also be annotated, where by annotation, we mean the association of arbitrary additional information with a resource. The Research Object thus collects together relevant resources along with annotations that enable the understanding, reuse etc. of its constituent parts. In a workflow-centric Reearch Object describing an investigation for example, annotations could describe how data sources have been used or how intermediate results were derived. Executable papers [[EXEC]] similarly aim to support validation, exploration and interaction in publication in order to support validation. Hunter [[HUNTER06]] proposes the notion of Scientific Publication Packages (SPP) to describe "the selective encapsulation of raw data, derived products, algorithms, software and textual publications". SPPs are motivated primarily by the need to create archives for the variety of artifacts produced during the course of a scientific investigation; they ideally contain data, methods, software and documents, but also their provenance as well.</p>
-
-<section id="scope"><h3>Scope of Wf4Ever Research Objects</h3>
-
-<p>The focus of Wf4Ever is on workflow preservation (and more specifically workflows supporting scientific investigation). Thus the objects that will be described using the model are inherently workflow-centric. Although the basic infrastructure (aggregation + annotation + domain vocabularies) that the RO model supports is applicable to many situations (for example the executable or enhanced publication of [[FORCE11]]), the specific vocabularies defined within the Wf4Ever RO model are intended to support those Research Objects that have workflows (methods) as their primary content.</p>
-
-<p>The intention is that a Wf4Ever Research Object will aggregate information about a workflow (or collection of workflows) possibly including details of its execution trace, the data items consumed or produced by the workflow, plus provenance information about the lineage of the workflow, data items or the aggregation itself. This intention is that this information will support reproducability of the workflows, reuse of the components and, perhaps most importantly will facilitate subsequent understanding of the investigation that the workflow is intended to support. The support of "full-fat" reproducability in terms of re-execution of a process in order to produce identical results is problematic, particularly when operating in a distributed, web-service based ecosystem.</p>
-</section><!-- scope --><section id="scope-doc"><h3>Scope of this document</h3>
-
-<p>This particular document describes the vocabularies that describe Workflow-centric Research Objects within Wf4ever. A complete, functional RO based ecosystem will require a number of different services for creation, storage, manipulation, recommendation, visualisation etc. of Research Objects. These services are not considered here. Nor do we discuss vocabularies or mechanisms that support Research Object evolution.</p>
-
-<p>This document describes the v0.1 release of the ontologies.</p>
-</section><!-- scope-doc --><section id="tech-soc"><h3>Technical and Social Objects</h3>
-
-<p>Research Objects play multiple roles. In the first case, they are
-<em>technical</em> objects. They provide access to the resources that
-are needed to support execution of investigations and record the
-provenance traces of those executions. They encapsulate dependencies
-between resources and maintain versioning information about the
-lineage and evolution of those resources.</p>
-
-<p>At the same time, they are <em>social</em> objects. They
-encapsulate reusable protocols and know-how. They record best
-practices and support reproducability. They are citable artifacts that
-can be referred to and quoted. They record and represent information
-about the people involved in investigations -- those who create, use,
-extend and curate the objects.
+<p>Research Objects are semantically rich aggregations of resources that bring together data, methods and people in scientific investigations [[BECHHOFER11]]. Their goal is to create a class of artifacts that can encapsulate our digital knowledge and provide a mechanism for sharing and discovering assets of reusable research and scientific knowledge. 
 </p>
 
-<p>These roles bring requirements on the representation structure and
-vocabularies used to describe Research Objects. This specification
-focuses on the <em>technical aspects</em> and describes the core
-Wf4Ever Research Object vocabularies that provide container
-structures and vocabulary for describing workflow objects. Additional
-vocabularies covering evolution, lifecycle, versioning and other
-social aspects will be covered elsewhere.</p>
+<p>In the Wf4Ever project the focus is on those Research Objets whose methods are implemented as scientific workflows. A (workflow-centric) research object (RO) is an artifact that bundles one or several workflows, the provenance of the results obtained by their enactment, other digital objects that are relevant for the experiment (papers, datasets, etc.), and annotations that semantically describe all these objects. A model that can be used to describe workflow-centric research objects is hence proposed in Wf4Ever [[RO-MODEL]]. This model is implemented as a suite of lightweight ontologies or vocabularies, building upon existing work from related communities.</p>
+
+<p>This primer document aims at easing the adoption of the RO model by developers and techy-savvy experimental data publishers by providing:</p>
+<ul>
+<li>An intuitive explanation of the different pieces of the RO model.
+</li>
+<li>Worked examples that can be followed to understand what an RO is and how its vocabularies can be used to unambiguously descibe a workflow-centric RO.
+</li>
+</ul>
+
+<p>The scope of this document is mainly that of developers interested in understanding how to use ontologies/vocabularies to describe research objects  in order to build tool support for their management; and experimental data publishers with sufficient knowledge about Semantic Web technologies to publish their research resources as an aggregation object and describe them in a machine-understandable, structured format, using the Resource Description Framework (RDF). In  this primer document the RDF Turtle syntax is used throughout. The normative specification of the research object ontologies and vocabularies can be found in [[RO-MODEL]].</p>
+</section><!-- introduction -->
+
+<section id="sec:overview"><h2>Overview of the RO Model</h2>
+
+<p>This section provides an overview of the RO Model. It does not cover all the details of the model. The RO Model Specification provides precise definitions to be used.</p>
+
+<p>Generally speaking he Wf4Ever RO model can describe the following three aspects of information:</p>
+<ul>
+<li>Basic aggregation structure of an RO</li>
+<li>Workflow Centric Research Objects</li>
+<li>Annotations to an RO and its components</li>
+</ul>
+
+<section id="sec:basic"><h3>Describe basic aggregation structure of an RO</h3>
+
+<p>A Research Object is simply an aggregation of resources and annotations about them. The figure below provides an overview of the Wf4Ever RO Model, which includes the following constructs:</p>
+<ul>
+<li><b>ResearchObject</b>, represents aggregation of resources. It acts as an entry point to the research object.</li>
+<li><b>Resource</b>, represents a resource that can be aggregated within a research object. As shown in the figure below, Resource can be a Dataset, Paper, Software or Annotation. Typically, a ResearchObject aggregates multiple Resources.</li>
+<li><b>Annotation</b>, used for describing research objects, their aggregated resources, as well as the relationship between resources. </li>
+</ul>
+
+<p><img src="diagrams/ResearchObject.png" imagetext="ResearchObject.png|border=1,width=600" width="600" style="border: 1px solid black"></p>
+
+</section><!-- basic -->
+
+</section><!-- overview -->
+
 
 </section><!-- tech-soc --><section id="organisation"><h3>Overall Model Organisation</h3>
 
