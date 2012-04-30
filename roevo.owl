@@ -1,0 +1,394 @@
+@prefix roevo: <http://purl.org/wf4ever/roevo#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix terms: <http://www.openarchives.org/ore/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ao: <http://purl.org/ao/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix : <http://www.w3.org/2002/07/owl#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ro: <http://purl.org/wf4ever/ro#> .
+@base <http://purl.org/wf4ever/roevo> .
+
+<http://purl.org/wf4ever/roevo> rdf:type owl:Ontology ;
+                                
+                                rdfs:comment "The Research Object evolution ontology, which extends the RO ontology to capture the lifecycle and versioning of research objects"@en ;
+                                
+                                owl:imports <http://purl.org/wf4ever/wf4ever> ;
+                                
+                                owl:versionIRI <https://raw.github.com/wf4ever/ro/master/roevo.owl> .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://purl.org/wf4ever/roevo#contribution
+
+roevo:contribution rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:range roevo:Version ;
+                   
+                   rdfs:domain roevo:Version .
+
+
+
+###  http://purl.org/wf4ever/roevo#derivedFrom
+
+roevo:derivedFrom rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:subPropertyOf roevo:contribution .
+
+
+
+###  http://purl.org/wf4ever/roevo#hasArchive
+
+roevo:hasArchive rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:range roevo:ArchivedRO ;
+                 
+                 rdfs:domain roevo:LiveRO .
+
+
+
+###  http://purl.org/wf4ever/roevo#hasChange
+
+roevo:hasChange rdf:type owl:ObjectProperty ;
+                
+                rdfs:range roevo:Change ;
+                
+                rdfs:domain roevo:Version .
+
+
+
+###  http://purl.org/wf4ever/roevo#hasPreviousChange
+
+roevo:hasPreviousChange rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:range roevo:Change ;
+                        
+                        rdfs:domain roevo:Change .
+
+
+
+###  http://purl.org/wf4ever/roevo#hasSnapshot
+
+roevo:hasSnapshot rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:domain roevo:LiveRO ;
+                  
+                  rdfs:range roevo:SnapshotRO .
+
+
+
+###  http://purl.org/wf4ever/roevo#importedFrom
+
+roevo:importedFrom rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:subPropertyOf roevo:contribution .
+
+
+
+###  http://purl.org/wf4ever/roevo#relatedResource
+
+roevo:relatedResource rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:range roevo:AggregatedResourceVersion ;
+                      
+                      rdfs:domain roevo:AggregationChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#relatesTo
+
+roevo:relatesTo rdf:type owl:ObjectProperty ;
+                
+                rdfs:subPropertyOf roevo:contribution .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://purl.org/wf4ever/roevo#AddAggregatedResource
+
+roevo:AddAggregatedResource rdf:type owl:Class ;
+                            
+                            rdfs:subClassOf roevo:AggregationChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#AddStatement
+
+roevo:AddStatement rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf roevo:StatementChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#AddTarget
+
+roevo:AddTarget rdf:type owl:Class ;
+                
+                rdfs:subClassOf roevo:TargetChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#AggregatedResourceVersion
+
+roevo:AggregatedResourceVersion rdf:type owl:Class ;
+                                
+                                rdfs:subClassOf roevo:Version .
+
+
+
+###  http://purl.org/wf4ever/roevo#AggregationChange
+
+roevo:AggregationChange rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf roevo:ROChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#AnnotationChange
+
+roevo:AnnotationChange rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf roevo:Change .
+
+
+
+###  http://purl.org/wf4ever/roevo#ArchivedRO
+
+roevo:ArchivedRO rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf ro:ResearchObject ,
+                                 roevo:ROVersion .
+
+
+
+###  http://purl.org/wf4ever/roevo#Change
+
+roevo:Change rdf:type owl:Class ;
+             
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty ao:annotatesResource ;
+                               owl:someValuesFrom roevo:Change
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty dcterms:creator ;
+                               owl:someValuesFrom foaf:Agent
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty dcterms:created ;
+                               owl:someValuesFrom xsd:dateTime
+                             ] .
+
+
+
+###  http://purl.org/wf4ever/roevo#DatasetChange
+
+roevo:DatasetChange rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf roevo:ResourceChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#DocumentChange
+
+roevo:DocumentChange rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf roevo:ResourceChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#FileChange
+
+roevo:FileChange rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf roevo:ResourceChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#ImageChange
+
+roevo:ImageChange rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf roevo:ResourceChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#LiveRO
+
+roevo:LiveRO rdf:type owl:Class ;
+             
+             rdfs:subClassOf ro:ResearchObject .
+
+
+
+###  http://purl.org/wf4ever/roevo#ModifyAggregatedResource
+
+roevo:ModifyAggregatedResource rdf:type owl:Class ;
+                               
+                               rdfs:subClassOf roevo:AggregationChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#ModifyStatement
+
+roevo:ModifyStatement rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf roevo:StatementChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#ModifyTarget
+
+roevo:ModifyTarget rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf roevo:TargetChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#ROChange
+
+roevo:ROChange rdf:type owl:Class ;
+               
+               rdfs:subClassOf roevo:Change .
+
+
+
+###  http://purl.org/wf4ever/roevo#ROVersion
+
+roevo:ROVersion rdf:type owl:Class ;
+                
+                rdfs:subClassOf roevo:Version .
+
+
+
+###  http://purl.org/wf4ever/roevo#RemoveAggregatedResource
+
+roevo:RemoveAggregatedResource rdf:type owl:Class ;
+                               
+                               rdfs:subClassOf roevo:AggregationChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#RemoveStatement
+
+roevo:RemoveStatement rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf roevo:StatementChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#RemoveTarget
+
+roevo:RemoveTarget rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf roevo:TargetChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#ResourceChange
+
+roevo:ResourceChange rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf roevo:Change .
+
+
+
+###  http://purl.org/wf4ever/roevo#SnapshotRO
+
+roevo:SnapshotRO rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf ro:ResearchObject ,
+                                 roevo:ROVersion .
+
+
+
+###  http://purl.org/wf4ever/roevo#StatementChange
+
+roevo:StatementChange rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf roevo:AnnotationChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#TargetChange
+
+roevo:TargetChange rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf roevo:AnnotationChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#Version
+
+roevo:Version rdf:type owl:Class ;
+              
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty dcterms:identifier ;
+                                owl:someValuesFrom rdfs:Literal
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty ao:annotatesResource ;
+                                owl:someValuesFrom roevo:Version
+                              ] .
+
+
+
+###  http://purl.org/wf4ever/roevo#WebServiceChange
+
+roevo:WebServiceChange rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf roevo:ResourceChange .
+
+
+
+###  http://purl.org/wf4ever/roevo#WorkflowChange
+
+roevo:WorkflowChange rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf roevo:ResourceChange .
+
+
+
+###  http://www.openarchives.org/ore/terms/AggregatedResource
+
+terms:AggregatedResource rdfs:subClassOf roevo:AggregatedResourceVersion .
+
+
+
+
+###  Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net
+
