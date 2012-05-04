@@ -94,6 +94,16 @@ roevo:hasPreviousChange rdf:type owl:ObjectProperty ;
 
 
 
+###  http://purl.org/wf4ever/roevo#hasPreviousVersion
+
+roevo:hasPreviousVersion rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:range roevo:Version ;
+                         
+                         rdfs:domain roevo:Version .
+
+
+
 ###  http://purl.org/wf4ever/roevo#hasSnapshot
 
 roevo:hasSnapshot rdf:type owl:ObjectProperty ;
@@ -357,12 +367,12 @@ roevo:TargetChange rdf:type owl:Class ;
 roevo:Version rdf:type owl:Class ;
               
               rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                owl:onProperty dcterms:identifier ;
-                                owl:someValuesFrom rdfs:Literal
-                              ] ,
-                              [ rdf:type owl:Restriction ;
                                 owl:onProperty ao:annotatesResource ;
                                 owl:someValuesFrom roevo:Version
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty dcterms:identifier ;
+                                owl:someValuesFrom rdfs:Literal
                               ] .
 
 
