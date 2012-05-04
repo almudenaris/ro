@@ -50,9 +50,9 @@
 
 roevo:contribution rdf:type owl:ObjectProperty ;
                    
-                   rdfs:range roevo:Version ;
+                   rdfs:range ro:ResearchObject ;
                    
-                   rdfs:domain roevo:Version .
+                   rdfs:domain ro:ResearchObject .
 
 
 
@@ -119,6 +119,22 @@ roevo:hasSnapshot rdf:type owl:ObjectProperty ;
 roevo:importedFrom rdf:type owl:ObjectProperty ;
                    
                    rdfs:subPropertyOf roevo:contribution .
+
+
+
+###  http://purl.org/wf4ever/roevo#isArchivedOf
+
+roevo:isArchivedOf rdf:type owl:ObjectProperty ;
+                   
+                   owl:inverseOf roevo:hasArchive .
+
+
+
+###  http://purl.org/wf4ever/roevo#isSnapshotOf
+
+roevo:isSnapshotOf rdf:type owl:ObjectProperty ;
+                   
+                   owl:inverseOf roevo:hasSnapshot .
 
 
 
@@ -211,16 +227,16 @@ roevo:ArchivedRO rdf:type owl:Class ;
 roevo:Change rdf:type owl:Class ;
              
              rdfs:subClassOf [ rdf:type owl:Restriction ;
-                               owl:onProperty ao:annotatesResource ;
-                               owl:someValuesFrom roevo:Change
+                               owl:onProperty dcterms:created ;
+                               owl:someValuesFrom xsd:dateTime
                              ] ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty dcterms:creator ;
                                owl:someValuesFrom foaf:Agent
                              ] ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty dcterms:created ;
-                               owl:someValuesFrom xsd:dateTime
+                               owl:onProperty ao:annotatesResource ;
+                               owl:someValuesFrom roevo:Change
                              ] .
 
 
@@ -367,12 +383,12 @@ roevo:TargetChange rdf:type owl:Class ;
 roevo:Version rdf:type owl:Class ;
               
               rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                owl:onProperty ao:annotatesResource ;
-                                owl:someValuesFrom roevo:Version
-                              ] ,
-                              [ rdf:type owl:Restriction ;
                                 owl:onProperty dcterms:identifier ;
                                 owl:someValuesFrom rdfs:Literal
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty ao:annotatesResource ;
+                                owl:someValuesFrom roevo:Version
                               ] .
 
 
