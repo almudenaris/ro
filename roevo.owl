@@ -48,11 +48,7 @@
 
 ###  http://purl.org/wf4ever/roevo#contribution
 
-roevo:contribution rdf:type owl:ObjectProperty ;
-                   
-                   rdfs:range ro:ResearchObject ;
-                   
-                   rdfs:domain ro:ResearchObject .
+roevo:contribution rdf:type owl:ObjectProperty .
 
 
 
@@ -81,6 +77,14 @@ roevo:hasChange rdf:type owl:ObjectProperty ;
                 rdfs:range roevo:Change ;
                 
                 rdfs:domain roevo:Version .
+
+
+
+###  http://purl.org/wf4ever/roevo#hasNextVersion
+
+roevo:hasNextVersion rdf:type owl:ObjectProperty ;
+                     
+                     owl:inverseOf roevo:hasPreviousVersion .
 
 
 
