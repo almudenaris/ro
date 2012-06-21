@@ -1,0 +1,198 @@
+@prefix : <http://purl.org/wf4ever/roevo-wf#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix roevo-wf: <http://purl.org/wf4ever/roevo-wf#> .
+@base <http://purl.org/wf4ever/roevo-wf> .
+
+<http://purl.org/wf4ever/roevo-wf> rdf:type owl:Ontology ;
+                                   
+                                   rdfs:comment "This ontology extends roevo with a detailed taxonomy of changes for workflows. This taxonomy has been created based on an analysis of workflows in myExperiment." ;
+                                   
+                                   owl:imports <http://purl.org/wf4ever/roevo> ;
+                                   
+                                   owl:versionIRI <http://purl.org/wf4ever/roevo-wf/0.1> .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://purl.org/wf4ever/roevo-wf#newValue
+
+:newValue rdf:type owl:DatatypeProperty ;
+          
+          rdfs:domain :ParameterChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#objectId
+
+:objectId rdf:type owl:DatatypeProperty ;
+          
+          rdfs:domain :WorkflowTemplateChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#oldValue
+
+:oldValue rdf:type owl:DatatypeProperty ;
+          
+          rdfs:domain :ParameterChange .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://purl.org/wf4ever/roevo-wf#AddControlFlowBetweenProcessors
+
+:AddControlFlowBetweenProcessors rdf:type owl:Class ;
+                                 
+                                 rdfs:subClassOf :WorkflowTemplateChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#AddDataFlowBetweenProcessorPorts
+
+:AddDataFlowBetweenProcessorPorts rdf:type owl:Class ;
+                                  
+                                  rdfs:subClassOf :WorkflowTemplateChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#AddProcessor
+
+:AddProcessor rdf:type owl:Class ;
+              
+              rdfs:subClassOf :WorkflowTemplateChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#AddProcessorPort
+
+:AddProcessorPort rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf :UpdateProcessor .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#AddWorkflowPort
+
+:AddWorkflowPort rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf :WorkflowTemplateChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#DeleteControlFlowBetweenProcessors
+
+:DeleteControlFlowBetweenProcessors rdf:type owl:Class ;
+                                    
+                                    rdfs:subClassOf :WorkflowTemplateChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#DeleteDataFlowBetweenProcessorPorts
+
+:DeleteDataFlowBetweenProcessorPorts rdf:type owl:Class ;
+                                     
+                                     rdfs:subClassOf :WorkflowTemplateChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#DeleteProcessor
+
+:DeleteProcessor rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf :WorkflowTemplateChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#DeleteProcessorPort
+
+:DeleteProcessorPort rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf :UpdateProcessor .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#DeleteWorkflowPort
+
+:DeleteWorkflowPort rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :WorkflowTemplateChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#ParameterChange
+
+:ParameterChange rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf :WorkflowInstanceChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#UpdateProcessor
+
+:UpdateProcessor rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf :WorkflowTemplateChange .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#UpdateProcessorAnnotation
+
+:UpdateProcessorAnnotation rdf:type owl:Class ;
+                           
+                           rdfs:subClassOf :UpdateProcessor .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#UpdateProcessorConfiguration
+
+:UpdateProcessorConfiguration rdf:type owl:Class ;
+                              
+                              rdfs:subClassOf :UpdateProcessor .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#WorkflowInstanceChange
+
+:WorkflowInstanceChange rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf <http://purl.org/wf4ever/roevo#Modification> .
+
+
+
+###  http://purl.org/wf4ever/roevo-wf#WorkflowTemplateChange
+
+:WorkflowTemplateChange rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf <http://purl.org/wf4ever/roevo#Modification> .
+
+
+
+
+###  Generated by the OWL API (version 3.2.5.1928) http://owlapi.sourceforge.net
+
