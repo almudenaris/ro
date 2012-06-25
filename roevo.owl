@@ -181,9 +181,9 @@ roevo:wasSnapshotedBy rdf:type owl:ObjectProperty ;
 
 
 
-###  http://www.w3.org/ns/prov#hadPrimarySource
+###  http://www.w3.org/ns/prov#hadOriginalSource
 
-prov:hadPrimarySource rdf:type owl:ObjectProperty ;
+prov:hadOriginalSource rdf:type owl:ObjectProperty ;
                       
                       rdfs:range prov:Entity ;
                       
