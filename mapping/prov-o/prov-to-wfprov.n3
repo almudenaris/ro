@@ -1,5 +1,5 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix prov: <http://www.w3.org/ns/prov-o/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
@@ -19,22 +19,26 @@
 
 # ProcessRun
 { ?activity a prov:Activity;
-      prov:hadRecipe ?recipe .
+      prov:qualifiedAssociation [
+          prov:hadPlan ?recipe 
+      ] .
   ?recipe a wfdesc:Process } => 
 { ?activity a wfprov:ProcessRun;
       wfprov:describedByProcess ?recipe }  .
 
 # Workflow
 { ?activity a prov:Activity;
-     prov:hadRecipe ?recipe . 
+      prov:qualifiedAssociation [
+          prov:hadPlan ?recipe 
+      ] .
   ?recipe a wfdesc:Workflow } => 
 { ?activity a wfprov:WorkflowRun;
    wfprov:describedByWorkflow ?recipe } .
 
 # usedInput
 { ?activity a prov:Activity;
-      prov:hadQualifiedUsage [
-          prov:hadQualifiedEntity ?entity;
+      prov:qualifiedUsage [
+          prov:entity ?entity;
           prov:hadRole ?role
       ] .
   ?role a wfdesc:Input } =>
@@ -44,8 +48,8 @@
 
 # wasOutputFrom  
 { ?activity a prov:Activity;
-      prov:hadQualifiedGeneration [
-          prov:hadQualifiedEntity ?entity;
+      prov:qualifiedGeneration [
+          prov:entity ?entity;
           prov:hadRole ?role
       ] .
   ?role a wfdesc:Output } =>
@@ -53,21 +57,21 @@
       wfprov:wasOutputFrom ?activity ;
       wfprov:describedByParameter ?role } .
 
-# wasComplementOf
-# NOTE: taverna-prov needs to use wasComplementOf for artifacts output
+# alternateOf
+# NOTE: taverna-prov needs to use alternateOf for artifacts output
 # by both a processor and workflow due to prov:wasGeneratedBy being 
 # functional
 {  ?aliasEntity a wfprov:Artifact ;
-       prov:wasComplementOf ?entity } =>
+       prov:alternateOf ?entity } =>
 { ?entity a wfprov:Artifact ;
-      # TODO: Does wfprov need an equivalent to wasComplementOf?
+      # TODO: Does wfprov need an equivalent to alternateOf?
       = ?aliasEntity ;
       } .
 
 
 # wasPartOfWorkflowRun
 { ?processRun a wfprov:ProcessRun ;
-   prov:wasControlledBy ?workflowRun .
+   prov:wasAssociatedWith ?workflowRun .
 ?workflowRun a wfprov:ProcessRun ;
    wfprov:describedByWorkflow ?workflow ;
     } =>
@@ -81,7 +85,7 @@
       wfprov:describedByWorkflow ?workflow . 
   ?provenanceContainer a prov:ProvenanceContainer ;
       prov:wasGeneratedBy [ 
-        prov:wasControlledBy ?workflowEngine;
+        prov:wasAssociatedWith ?workflowEngine;
         prov:used ?workflowRun ]
       } => 
 { ?workflowRun wfprov:wasEnactedBy ?workflowEngine .
