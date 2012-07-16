@@ -47,9 +47,9 @@
   ?activity wfprov:usedInput ?entity } .
 
 # wasOutputFrom  
-{ ?activity a prov:Activity;
+{ ?entity a prov:Entity; 
       prov:qualifiedGeneration [
-          prov:entity ?entity;
+          prov:activity ?activity;
           prov:hadRole ?role
       ] .
   ?role a wfdesc:Output } =>
@@ -83,10 +83,10 @@
 # on the workflow run
 { ?workflowRun a wfprov:ProcessRun ;
       wfprov:describedByWorkflow ?workflow . 
-  ?provenanceContainer a prov:ProvenanceContainer ;
+  ?bundle a prov:Bundle;
       prov:wasGeneratedBy [ 
         prov:wasAssociatedWith ?workflowEngine;
-        prov:used ?workflowRun ]
+        prov:wasInformedBy ?workflowRun ]
       } => 
 { ?workflowRun wfprov:wasEnactedBy ?workflowEngine .
   ?workflowEngine a wfprov:WorkflowEngine .

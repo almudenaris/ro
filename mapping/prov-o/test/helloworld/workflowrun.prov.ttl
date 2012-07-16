@@ -2,72 +2,68 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
-<http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/> a prov:Activity ;
-	prov:influenced _:node1720fhmjlx2 .
+<http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/> a prov:Activity ;
+	prov:influenced _:node1727i67u6x2 .
 
-_:node1720fhmjlx2 a prov:Activity ;
-	prov:startedAtTime "2012-07-13T16:33:08.780+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-	prov:wasAssociatedWith _:node1720fhmjlx1 .
+_:node1727i67u6x2 a prov:Activity ;
+	prov:startedAtTime "2012-07-16T10:34:00.059+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith _:node1727i67u6x1 .
 
-_:node1720fhmjlx1 a prov:Agent ;
-	prov:influenced _:node1720fhmjlx2 , <http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/> .
+_:node1727i67u6x1 a prov:Agent ;
+	prov:influenced _:node1727i67u6x2 , <http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/> .
 
-_:node1720fhmjlx2 prov:qualifiedAssociation _:node1720fhmjlx3 .
+_:node1727i67u6x2 prov:qualifiedAssociation _:node1727i67u6x3 .
 
-_:node1720fhmjlx3 a prov:Association ;
-	prov:agent _:node1720fhmjlx1 ;
+_:node1727i67u6x3 a prov:Association ;
+	prov:agent _:node1727i67u6x1 ;
 	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
 
-_:node1720fhmjlx2 prov:generated <http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/bundle> ;
-	prov:influenced <http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/bundle> ;
-	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/> ;
-	prov:endedAtTime "2012-07-13T16:33:13.162+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+_:node1727i67u6x2 prov:generated <http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/bundle> ;
+	prov:influenced <http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/bundle> ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/> ;
+	prov:endedAtTime "2012-07-16T10:34:05.171+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
 
-<http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/> prov:wasAssociatedWith _:node1720fhmjlx1 ;
-	prov:qualifiedAssociation _:node1720fhmjlx4 .
+<http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/> prov:wasAssociatedWith _:node1727i67u6x1 ;
+	prov:qualifiedAssociation _:node1727i67u6x4 .
 
-_:node1720fhmjlx4 a prov:Association ;
-	prov:agent _:node1720fhmjlx1 ;
+_:node1727i67u6x4 a prov:Association ;
+	prov:agent _:node1727i67u6x1 ;
 	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/8781d5f4-d0ba-48a8-a1d1-14281bd8a917/workflow/Hello_World/> .
 
-<http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/> prov:startedAtTime "2012-07-13T16:32:37.471+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-	prov:endedAtTime "2012-07-13T16:32:41.934+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-	prov:generated _:node1720fhmjlx5 .
+<http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/> prov:startedAtTime "2012-07-16T10:33:49.926+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:endedAtTime "2012-07-16T10:33:50.153+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:generated <http://ns.taverna.org.uk/2011/data/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/ref/7e110220-01fc-46c2-b605-338171ba2e77> ;
+	prov:influenced <http://ns.taverna.org.uk/2011/data/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/ref/7e110220-01fc-46c2-b605-338171ba2e77> , <http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/process/43d4da46-4b79-4301-a774-e5fda960a899/> .
 
-_:node1720fhmjlx5 a prov:Entity ;
-	prov:alternateOf <http://ns.taverna.org.uk/2011/data/caf98a69-7c8b-4f7d-88f1-f40554ebb079/ref/fbabe9ff-99e4-458b-a731-7ddbf7ecb3fa> ;
-	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/> ;
-	prov:qualifiedGeneration _:node1720fhmjlx6 .
+<http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/process/43d4da46-4b79-4301-a774-e5fda960a899/> a prov:Activity ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/> ;
+	prov:startedAtTime "2012-07-16T10:33:49.997+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:endedAtTime "2012-07-16T10:33:50.040+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node1727i67u6x4 ;
+	prov:generated _:node1727i67u6x7 .
 
-_:node1720fhmjlx6 a prov:Generation ;
-	prov:activity <http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/> ;
-	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/8781d5f4-d0ba-48a8-a1d1-14281bd8a917/workflow/Hello_World/out/greeting> .
+_:node1727i67u6x7 a prov:Entity ;
+	prov:alternateOf <http://ns.taverna.org.uk/2011/data/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/ref/7e110220-01fc-46c2-b605-338171ba2e77> ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/process/43d4da46-4b79-4301-a774-e5fda960a899/> ;
+	prov:qualifiedGeneration _:node1727i67u6x8 .
 
-<http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/> prov:influenced _:node1720fhmjlx5 , <http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/process/b28c13c1-57c5-4bb2-9b3e-2cb3e18c31cb/> .
-
-<http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/process/b28c13c1-57c5-4bb2-9b3e-2cb3e18c31cb/> a prov:Activity ;
-	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/> ;
-	prov:startedAtTime "2012-07-13T16:32:38.068+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-	prov:endedAtTime "2012-07-13T16:32:41.744+01:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-	prov:qualifiedAssociation _:node1720fhmjlx4 ;
-	prov:generated _:node1720fhmjlx8 .
-
-_:node1720fhmjlx8 a prov:Entity ;
-	prov:alternateOf <http://ns.taverna.org.uk/2011/data/caf98a69-7c8b-4f7d-88f1-f40554ebb079/ref/fbabe9ff-99e4-458b-a731-7ddbf7ecb3fa> ;
-	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/process/b28c13c1-57c5-4bb2-9b3e-2cb3e18c31cb/> ;
-	prov:qualifiedGeneration _:node1720fhmjlx9 .
-
-_:node1720fhmjlx9 a prov:Generation ;
-	prov:activity <http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/process/b28c13c1-57c5-4bb2-9b3e-2cb3e18c31cb/> ;
+_:node1727i67u6x8 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/process/43d4da46-4b79-4301-a774-e5fda960a899/> ;
 	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/8781d5f4-d0ba-48a8-a1d1-14281bd8a917/workflow/Hello_World/processor/hello/out/value> .
 
-<http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/process/b28c13c1-57c5-4bb2-9b3e-2cb3e18c31cb/> prov:influenced _:node1720fhmjlx8 .
+<http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/process/43d4da46-4b79-4301-a774-e5fda960a899/> prov:influenced _:node1727i67u6x7 .
 
-<http://ns.taverna.org.uk/2011/run/caf98a69-7c8b-4f7d-88f1-f40554ebb079/bundle> a prov:Bundle , prov:Entity ;
-	prov:wasGeneratedBy _:node1720fhmjlx2 .
+<http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/bundle> a prov:Bundle , prov:Entity ;
+	prov:wasGeneratedBy _:node1727i67u6x2 .
 
-<http://ns.taverna.org.uk/2011/data/caf98a69-7c8b-4f7d-88f1-f40554ebb079/ref/fbabe9ff-99e4-458b-a731-7ddbf7ecb3fa> a prov:Entity ;
-	owl:sameAs <file:/home/stain/src/ro/mapping/prov-o/test/helloworld/greeting.text> .
+<http://ns.taverna.org.uk/2011/data/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/ref/7e110220-01fc-46c2-b605-338171ba2e77> a prov:Entity ;
+	owl:sameAs <file:/home/stain/src/ro/mapping/prov-o/test/1/greeting.txt> ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/> ;
+	prov:qualifiedGeneration _:node1727i67u6x5 .
+
+_:node1727i67u6x5 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/26810cf6-d690-453c-bc21-6ec3eb8dcb2a/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/8781d5f4-d0ba-48a8-a1d1-14281bd8a917/workflow/Hello_World/out/greeting> .
 
 <http://ns.taverna.org.uk/2010/workflowBundle/8781d5f4-d0ba-48a8-a1d1-14281bd8a917/workflow/Hello_World/> a prov:Plan .
 
@@ -79,6 +75,6 @@ _:node1720fhmjlx9 a prov:Generation ;
 
 <http://ns.taverna.org.uk/2010/workflowBundle/8781d5f4-d0ba-48a8-a1d1-14281bd8a917/workflow/Hello_World/processor/hello/out/value> a prov:Role .
 
-_:node1720fhmjlx7 a prov:Association ;
-	prov:agent _:node1720fhmjlx1 ;
+_:node1727i67u6x6 a prov:Association ;
+	prov:agent _:node1727i67u6x1 ;
 	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/8781d5f4-d0ba-48a8-a1d1-14281bd8a917/workflow/Hello_World/processor/hello/> .
