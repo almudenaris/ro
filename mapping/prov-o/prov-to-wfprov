@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+## resolve links - $0 may be a symlink
+prog="$0"
+
+real_path() {
+    readlink -m "$1" 2>/dev/null || python -c 'import os,sys;print os.path.realpath(sys.argv[1])' "$1"
+}
+
+realprog=`real_path "$prog"`
+proghome=`dirname "$realprog"`
+
+
+# Check if cwm is installed
+cwm < /dev/null > /dev/null || {
+    echo "Try:
+    sudo apt-get install cwm
+or install from:
+    http://www.w3.org/2000/10/swap/doc/cwm.html" >&2 ; exit
+}
+
+wfdesc=$1
+prov=$2
+wfprov=$(echo $prov | sed s/.prov.ttl//).wfprov.ttl
+
+
+
+cwm $wfdesc $prov $proghome/prov-to-wfprov.n3 --think \
+    --filter=$proghome/prov-to-wfprov.n3 --n3=tv > $wfprov
+
+echo $wfprov

@@ -6,7 +6,7 @@ Use with cwm --think and --filter for best results.
 
 Examples:
 
-: stain@ralph ~/src/wf4ever/ro/mapping/prov-o/test;cwm helloworld.wfdesc.ttl helloworld.prov.rdf ../prov-to-wfprov.n3 --think --filter=../prov-to-wfprov.n3
+: stain@ralph ~/src/wf4ever/ro/mapping/prov-o/test;cwm helloworld.wfdesc.ttl helloworld.prov.ttl ../prov-to-wfprov.n3 --think --filter=../prov-to-wfprov.n3
 #Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp 
         #    using base file:///home/stain/stuff/src/wf4ever/ro/mapping/prov-o/test/
         
@@ -37,7 +37,7 @@ Examples:
 #ENDS
 
 
-: stain@ralph ~/src/wf4ever/ro/mapping/prov-o/test;cwm helloanyone.wfdesc.ttl helloanyone.prov.rdf ../prov-to-wfprov.n3 --think --filter=../prov-to-wfprov.n3
+: stain@ralph ~/src/wf4ever/ro/mapping/prov-o/test;cwm helloanyone.wfdesc.ttl helloanyone.prov.ttl ../prov-to-wfprov.n3 --think --filter=../prov-to-wfprov.n3
 #Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp 
         #    using base file:///home/stain/stuff/src/wf4ever/ro/mapping/prov-o/test/
         
