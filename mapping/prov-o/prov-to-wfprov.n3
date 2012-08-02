@@ -16,24 +16,35 @@
  """ ;
  rdfs:seeAlso <http://www.w3.org/2000/10/swap/doc/cwm.html> .
 
+# alternateOf
+# NOTE: taverna-prov needs to use alternateOf for artifacts output
+# by both a processor and workflow due to prov:wasGeneratedBy being 
+# functional
+##{  ?aliasEntity a wfprov:Artifact ;
+##       prov:alternateOf ?entity } =>
+##{ ?entity a wfprov:Artifact ;
+##      # TODO: Does wfprov need an equivalent to alternateOf?
+##      owl:sameAs ?aliasEntity ;
+##      } .
+##
 
 # ProcessRun
 { ?activity a prov:Activity;
       prov:qualifiedAssociation [
-          prov:hadPlan ?recipe 
+          prov:hadPlan ?plan 
       ] .
-  ?recipe a wfdesc:Process } => 
+  ?plan a wfdesc:Process } => 
 { ?activity a wfprov:ProcessRun;
-      wfprov:describedByProcess ?recipe }  .
+      wfprov:describedByProcess ?plan }  .
 
 # Workflow
 { ?activity a prov:Activity;
       prov:qualifiedAssociation [
-          prov:hadPlan ?recipe 
+          prov:hadPlan ?plan 
       ] .
-  ?recipe a wfdesc:Workflow } => 
+  ?plan a wfdesc:Workflow } => 
 { ?activity a wfprov:WorkflowRun;
-   wfprov:describedByWorkflow ?recipe } .
+   wfprov:describedByWorkflow ?plan } .
 
 # usedInput
 { ?activity a prov:Activity;
@@ -41,32 +52,24 @@
           prov:entity ?entity;
           prov:hadRole ?role
       ] .
+      ?entity prov:alternateOf ?alias .
   ?role a wfdesc:Input } =>
-{ ?entity a wfprov:Artifact ;
+{ ?alias a wfprov:Artifact ;
       wfprov:describedByParameter ?role .
-  ?activity wfprov:usedInput ?entity } .
+  ?activity wfprov:usedInput ?alias } .
 
 # wasOutputFrom  
 { ?entity a prov:Entity; 
+      prov:alternateOf ?alias ;
       prov:qualifiedGeneration [
           prov:activity ?activity;
           prov:hadRole ?role
       ] .
   ?role a wfdesc:Output } =>
-{ ?entity a wfprov:Artifact ;
+{ ?alias a wfprov:Artifact ;
       wfprov:wasOutputFrom ?activity ;
       wfprov:describedByParameter ?role } .
 
-# alternateOf
-# NOTE: taverna-prov needs to use alternateOf for artifacts output
-# by both a processor and workflow due to prov:wasGeneratedBy being 
-# functional
-{  ?aliasEntity a wfprov:Artifact ;
-       prov:alternateOf ?entity } =>
-{ ?entity a wfprov:Artifact ;
-      # TODO: Does wfprov need an equivalent to alternateOf?
-      = ?aliasEntity ;
-      } .
 
 
 # wasPartOfWorkflowRun
