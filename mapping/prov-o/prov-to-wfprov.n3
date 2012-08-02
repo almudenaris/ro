@@ -74,7 +74,7 @@
 
 # wasPartOfWorkflowRun
 { ?processRun a wfprov:ProcessRun ;
-   prov:wasAssociatedWith ?workflowRun .
+   prov:wasInformedBy ?workflowRun .
 ?workflowRun a wfprov:ProcessRun ;
    wfprov:describedByWorkflow ?workflow ;
     } =>
