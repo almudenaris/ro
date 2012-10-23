@@ -1,13 +1,20 @@
+<?xml version="1.0"?>
 
-<!-- Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp -->
-<!--     using base file:///home/stain/src/ro/wf4ever.owl-->
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
 
 
 <rdf:RDF xmlns="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-
+     xml:base="http://www.w3.org/2000/01/rdf-schema"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://purl.org/wf4ever/wf4ever">
         <comment xml:lang="en">The wf4ever ontology.
                                   This is based on the wf4ever ontologies ro, wf and wfdesc- but adds custom classes like wf4ever:Image and wf4ever:WebServiceProcess</comment>
@@ -16,85 +23,206 @@
         <owl:imports rdf:resource="http://purl.org/wf4ever/wfprov"/>
         <owl:versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/master/wf4ever.owl"/>
     </owl:Ontology>
+    
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#BeanshellScript">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/wf4ever#Script"/>
-    </owl:Class>
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#CommandLineTool">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/wfdesc#Process"/>
-    </owl:Class>
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#Dataset">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/wfprov#Artifact"/>
-    </owl:Class>
+    
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#Document">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/wfprov#Artifact"/>
-    </owl:Class>
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#File">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/wfprov#Artifact"/>
-    </owl:Class>
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#Image">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/wfprov#Artifact"/>
-    </owl:Class>
+    
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#RESTService">
-        <comment xml:lang="en">A RESTful web service</comment>
-        <subClassOf rdf:resource="http://purl.org/wf4ever/wf4ever#WebService"/>
-    </owl:Class>
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#RScript">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/wf4ever#Script"/>
-    </owl:Class>
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#SOAPService">
-        <comment xml:lang="en">A SOAP service is typically described in a WSDL 1.1 or WSDL 2.0
+    
 
-TODO: Do we need to distinguish between WSDL and SOAP? WSDL 1.1 and WSDL 2.0? RPC/Encoded vs.Wrapped Document/Literal?</comment>
-        <subClassOf rdf:resource="http://purl.org/wf4ever/wf4ever#WebService"/>
-    </owl:Class>
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#Script">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/wfdesc#Process"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#WebService">
-        <comment>WebServiceProcess is a wfdesc:Process description, the enactment of which gives rise to a web service call.</comment>
-        <subClassOf rdf:resource="http://purl.org/wf4ever/wfdesc#Process"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#WorkflowResearchObject">
-        <comment>A workflow research object is a research object that contains at least one workflow description.</comment>
-    </owl:Class>
+    <!-- http://purl.org/wf4ever/wf4ever#command -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/wf4ever/wf4ever#command">
         <domain rdf:resource="http://purl.org/wf4ever/wf4ever#CommandLineTool"/>
-        <range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#script -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/wf4ever/wf4ever#script">
         <domain rdf:resource="http://purl.org/wf4ever/wf4ever#Script"/>
-        <range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#serviceURI -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/wf4ever/wf4ever#serviceURI">
         <domain rdf:resource="http://purl.org/wf4ever/wf4ever#WebService"/>
-        <range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <range rdf:resource="&xsd;anyURI"/>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#wsdlOperationName -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/wf4ever/wf4ever#wsdlOperationName">
         <domain rdf:resource="http://purl.org/wf4ever/wf4ever#SOAPService"/>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#wsdlPortName -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/wf4ever/wf4ever#wsdlPortName">
         <domain rdf:resource="http://purl.org/wf4ever/wf4ever#SOAPService"/>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#wsdlURI -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/wf4ever/wf4ever#wsdlURI">
         <domain rdf:resource="http://purl.org/wf4ever/wf4ever#SOAPService"/>
         <subPropertyOf rdf:resource="http://purl.org/wf4ever/wf4ever#serviceURI"/>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#BeanshellScript -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#BeanshellScript">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/wf4ever#Script"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#CommandLineTool -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#CommandLineTool">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/wfdesc#Process"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#Dataset -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#Dataset">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/wfprov#Artifact"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#Document -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#Document">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/wfprov#Artifact"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#File -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#File">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/wfprov#Artifact"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#Image -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#Image">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/wfprov#Artifact"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#RESTService -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#RESTService">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/wf4ever#WebService"/>
+        <comment xml:lang="en">A RESTful web service</comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#RScript -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#RScript">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/wf4ever#Script"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#SOAPService -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#SOAPService">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/wf4ever#WebService"/>
+        <comment xml:lang="en">A SOAP service is typically described in a WSDL 1.1 or WSDL 2.0
+
+TODO: Do we need to distinguish between WSDL and SOAP? WSDL 1.1 and WSDL 2.0? RPC/Encoded vs.Wrapped Document/Literal?</comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#Script -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#Script">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/wfdesc#Process"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#WebService -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#WebService">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/wfdesc#Process"/>
+        <comment>WebServiceProcess is a wfdesc:Process description, the enactment of which gives rise to a web service call.</comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wf4ever#WorkflowResearchObject -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/wf4ever#WorkflowResearchObject">
+        <comment>A workflow research object is a research object that contains at least one workflow description.</comment>
+    </owl:Class>
 </rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+

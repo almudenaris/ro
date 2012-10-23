@@ -1,248 +1,465 @@
+<?xml version="1.0"?>
 
-<!-- Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp -->
-<!--     using base file:///home/stain/src/ro/roevo.owl-->
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
 
 
 <rdf:RDF xmlns="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-
-    <owl:ObjectProperty rdf:about="http://purl.org/ao/annotatesResource">
-    </owl:ObjectProperty>
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/dc/terms/identifier">
-    </owl:DatatypeProperty>
-
-    <owl:Class rdf:about="http://purl.org/wf4ever/ro#AggregatedAnnotation">
-        <subClassOf rdf:parseType="Resource">
-            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-            <owl:onProperty rdf:resource="http://purl.org/ao/annotatesResource"/>
-            <owl:someValuesFrom rdf:parseType="Resource">
-                <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-                <owl:unionOf rdf:parseType="Resource">
-                    <rdf:first rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
-                    <rdf:rest rdf:parseType="Resource">
-                        <rdf:first rdf:resource="http://purl.org/wf4ever/roevo#ChangeSpecification"/>
-                        <rdf:rest rdf:parseType="Resource">
-                            <rdf:first rdf:resource="http://purl.org/wf4ever/roevo#VersionableResource"/>
-                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                        </rdf:rest>
-                    </rdf:rest>
-                </owl:unionOf>
-            </owl:someValuesFrom>
-        </subClassOf>
-    </owl:Class>
-
-    <owl:Class rdf:about="http://purl.org/wf4ever/ro#ResearchObject">
-    </owl:Class>
-
-    <owl:Class rdf:about="http://purl.org/wf4ever/ro#Resource">
-    </owl:Class>
-
+     xml:base="http://www.w3.org/2000/01/rdf-schema"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://purl.org/wf4ever/roevo">
         <comment xml:lang="en">The Research Object evolution ontology (roevo) extends the ro ontology to capture the lifecycle and versioning of research objects. roevo follows a modular approach, enabling the creation of extensions for modeling detailed taxonomies of changes for particular resources, e.g., workflows. roevo v0.4 has been aligned with PROV Ontology.</comment>
         <owl:versionIRI rdf:resource="http://purl.org/wf4ever/roevo/0.4"/>
     </owl:Ontology>
+    
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#Addition">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
-    </owl:Class>
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#ArchivedRO">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/ro#ResearchObject"/>
-        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
-    </owl:Class>
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#Change">
-        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Activity"/>
-    </owl:Class>
+    
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#ChangeSpecification">
-        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Activity"/>
-    </owl:Class>
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#LiveRO">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/ro#ResearchObject"/>
-        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
-    </owl:Class>
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#Modification">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
-    </owl:Class>
+    
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#Removal">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
-    </owl:Class>
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#SnapshotRO">
-        <subClassOf rdf:resource="http://purl.org/wf4ever/ro#ResearchObject"/>
-        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
-    </owl:Class>
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
 
-    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#VersionableResource">
-        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
-        <subClassOf rdf:parseType="Resource">
-            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-            <owl:onProperty rdf:resource="http://purl.org/dc/terms/identifier"/>
-            <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        </subClassOf>
-        <owl:equivalentClass rdf:parseType="Resource">
-            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-            <owl:unionOf rdf:parseType="Resource">
-                <rdf:first rdf:resource="http://purl.org/wf4ever/ro#AggregatedAnnotation"/>
-                <rdf:rest rdf:parseType="Resource">
-                    <rdf:first rdf:resource="http://purl.org/wf4ever/ro#Resource"/>
-                    <rdf:rest rdf:parseType="Resource">
-                        <rdf:first rdf:resource="http://purl.org/wf4ever/roevo#ArchivedRO"/>
-                        <rdf:rest rdf:parseType="Resource">
-                            <rdf:first rdf:resource="http://purl.org/wf4ever/roevo#SnapshotRO"/>
-                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                        </rdf:rest>
-                    </rdf:rest>
-                </rdf:rest>
-            </owl:unionOf>
-        </owl:equivalentClass>
-    </owl:Class>
+    
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/wf4ever/roevo#archivedAtTime">
-        <domain rdf:resource="http://purl.org/wf4ever/roevo#ArchivedRO"/>
-        <range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#generatedAtTime"/>
-    </owl:DatatypeProperty>
+
+    <!-- http://purl.org/ao/annotatesResource -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/ao/annotatesResource"/>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#fromVersion -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#fromVersion">
         <domain rdf:resource="http://purl.org/wf4ever/roevo#ChangeSpecification"/>
         <range rdf:resource="http://purl.org/wf4ever/roevo#VersionableResource"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#hasArchive -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#hasArchive">
-        <domain rdf:resource="http://purl.org/wf4ever/roevo#LiveRO"/>
         <range rdf:resource="http://purl.org/wf4ever/roevo#ArchivedRO"/>
+        <domain rdf:resource="http://purl.org/wf4ever/roevo#LiveRO"/>
         <owl:inverseOf rdf:resource="http://purl.org/wf4ever/roevo#isArchiveOf"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#hasChange -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#hasChange">
-        <domain rdf:resource="http://purl.org/wf4ever/roevo#ChangeSpecification"/>
         <range rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
+        <domain rdf:resource="http://purl.org/wf4ever/roevo#ChangeSpecification"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#hasPreviousChange -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#hasPreviousChange">
-        <domain rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
         <range rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
+        <domain rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
     </owl:ObjectProperty>
+    
 
-    <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#hasRevision">
-    </owl:ObjectProperty>
+
+    <!-- http://purl.org/wf4ever/roevo#hasRevision -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#hasRevision"/>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#hasSnapshot -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#hasSnapshot">
         <domain rdf:resource="http://purl.org/wf4ever/roevo#LiveRO"/>
         <range rdf:resource="http://purl.org/wf4ever/roevo#SnapshotRO"/>
         <owl:inverseOf rdf:resource="http://purl.org/wf4ever/roevo#isSnapshotOf"/>
     </owl:ObjectProperty>
+    
 
-    <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#isArchiveOf">
-    </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#isSnapshotOf">
-    </owl:ObjectProperty>
+    <!-- http://purl.org/wf4ever/roevo#isArchiveOf -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#isArchiveOf"/>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#isSnapshotOf -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#isSnapshotOf"/>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#relatedResource -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#relatedResource">
         <domain rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
         <range rdf:resource="http://purl.org/wf4ever/roevo#VersionableResource"/>
         <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#used"/>
     </owl:ObjectProperty>
+    
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/wf4ever/roevo#snapshotedAtTime">
-        <domain rdf:resource="http://purl.org/wf4ever/roevo#SnapshotRO"/>
-        <range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#generatedAtTime"/>
-    </owl:DatatypeProperty>
+
+    <!-- http://purl.org/wf4ever/roevo#toVersion -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#toVersion">
         <domain rdf:resource="http://purl.org/wf4ever/roevo#ChangeSpecification"/>
         <range rdf:resource="http://purl.org/wf4ever/roevo#VersionableResource"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#wasArchivedBy -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#wasArchivedBy">
         <domain rdf:resource="http://purl.org/wf4ever/roevo#ArchivedRO"/>
         <range rdf:resource="http://www.w3.org/ns/prov#Agent"/>
         <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#wasAttributedTo"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#wasChangedBy -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#wasChangedBy">
-        <domain rdf:resource="http://purl.org/wf4ever/roevo#VersionableResource"/>
         <range rdf:resource="http://purl.org/wf4ever/roevo#ChangeSpecification"/>
+        <domain rdf:resource="http://purl.org/wf4ever/roevo#VersionableResource"/>
         <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#wasGeneratedBy"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#wasSnapshotedBy -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/wf4ever/roevo#wasSnapshotedBy">
         <domain rdf:resource="http://purl.org/wf4ever/roevo#SnapshotRO"/>
         <range rdf:resource="http://www.w3.org/ns/prov#Agent"/>
         <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#wasAttributedTo"/>
     </owl:ObjectProperty>
+    
 
-    <owl:Class rdf:about="http://www.w3.org/ns/prov#Activity">
-    </owl:Class>
 
-    <owl:Class rdf:about="http://www.w3.org/ns/prov#Agent">
-    </owl:Class>
-
-    <owl:Class rdf:about="http://www.w3.org/ns/prov#Entity">
-    </owl:Class>
-
-    <owl:DatatypeProperty rdf:about="http://www.w3.org/ns/prov#endedAtTime">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <domain rdf:resource="http://www.w3.org/ns/prov#Activity"/>
-        <range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="http://www.w3.org/ns/prov#generatedAtTime">
-    </owl:DatatypeProperty>
+    <!-- http://www.w3.org/ns/prov#hadOriginalSource -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#hadOriginalSource">
-        <domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
         <range rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+        <domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
         <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#wasDerivedFrom"/>
     </owl:ObjectProperty>
+    
 
-    <owl:DatatypeProperty rdf:about="http://www.w3.org/ns/prov#startedAtTime">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <domain rdf:resource="http://www.w3.org/ns/prov#Activity"/>
-        <range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-    </owl:DatatypeProperty>
 
-    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#used">
-    </owl:ObjectProperty>
+    <!-- http://www.w3.org/ns/prov#used -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#used"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasAssociatedWith -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#wasAssociatedWith">
         <domain rdf:resource="http://www.w3.org/ns/prov#Activity"/>
         <range rdf:resource="http://www.w3.org/ns/prov#Agent"/>
     </owl:ObjectProperty>
+    
 
-    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#wasAttributedTo">
-    </owl:ObjectProperty>
 
-    <owl:AsymmetricProperty rdf:about="http://www.w3.org/ns/prov#wasDerivedFrom">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-        <domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    <!-- http://www.w3.org/ns/prov#wasAttributedTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#wasAttributedTo"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasDerivedFrom -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#wasDerivedFrom">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
         <range rdf:resource="http://www.w3.org/ns/prov#Entity"/>
-    </owl:AsymmetricProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#wasGeneratedBy">
+        <domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasGeneratedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#wasGeneratedBy"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasQuotedFrom -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#wasQuotedFrom">
         <domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
         <range rdf:resource="http://www.w3.org/ns/prov#Entity"/>
         <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#wasDerivedFrom"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasRevisionOf -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#wasRevisionOf">
-        <domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
-        <range rdf:resource="http://www.w3.org/ns/prov#Entity"/>
-        <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#wasDerivedFrom"/>
         <owl:inverseOf rdf:resource="http://purl.org/wf4ever/roevo#hasRevision"/>
+        <range rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+        <domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+        <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#wasDerivedFrom"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/identifier -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/dc/terms/identifier"/>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#archivedAtTime -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/wf4ever/roevo#archivedAtTime">
+        <domain rdf:resource="http://purl.org/wf4ever/roevo#ArchivedRO"/>
+        <range rdf:resource="&xsd;dateTime"/>
+        <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#generatedAtTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#snapshotedAtTime -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/wf4ever/roevo#snapshotedAtTime">
+        <domain rdf:resource="http://purl.org/wf4ever/roevo#SnapshotRO"/>
+        <range rdf:resource="&xsd;dateTime"/>
+        <subPropertyOf rdf:resource="http://www.w3.org/ns/prov#generatedAtTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#endedAtTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/ns/prov#endedAtTime">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <range rdf:resource="&xsd;dateTime"/>
+        <domain rdf:resource="http://www.w3.org/ns/prov#Activity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#generatedAtTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/ns/prov#generatedAtTime"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#startedAtTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/ns/prov#startedAtTime">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <range rdf:resource="&xsd;dateTime"/>
+        <domain rdf:resource="http://www.w3.org/ns/prov#Activity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/wf4ever/ro#AggregatedAnnotation -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/ro#AggregatedAnnotation">
+        <subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/ao/annotatesResource"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.org/wf4ever/roevo#Change"/>
+                            <rdf:Description rdf:about="http://purl.org/wf4ever/roevo#ChangeSpecification"/>
+                            <rdf:Description rdf:about="http://purl.org/wf4ever/roevo#VersionableResource"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/ro#ResearchObject -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/ro#ResearchObject"/>
+    
+
+
+    <!-- http://purl.org/wf4ever/ro#Resource -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/ro#Resource"/>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#Addition -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#Addition">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#ArchivedRO -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#ArchivedRO">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/ro#ResearchObject"/>
+        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#Change -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#Change">
+        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Activity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#ChangeSpecification -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#ChangeSpecification">
+        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Activity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#LiveRO -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#LiveRO">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/ro#ResearchObject"/>
+        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#Modification -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#Modification">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#Removal -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#Removal">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/roevo#Change"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#SnapshotRO -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#SnapshotRO">
+        <subClassOf rdf:resource="http://purl.org/wf4ever/ro#ResearchObject"/>
+        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roevo#VersionableResource -->
+
+    <owl:Class rdf:about="http://purl.org/wf4ever/roevo#VersionableResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/wf4ever/ro#AggregatedAnnotation"/>
+                    <rdf:Description rdf:about="http://purl.org/wf4ever/ro#Resource"/>
+                    <rdf:Description rdf:about="http://purl.org/wf4ever/roevo#ArchivedRO"/>
+                    <rdf:Description rdf:about="http://purl.org/wf4ever/roevo#SnapshotRO"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+        <subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/dc/terms/identifier"/>
+                <owl:someValuesFrom rdf:resource="&rdfs;Literal"/>
+            </owl:Restriction>
+        </subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Activity -->
+
+    <owl:Class rdf:about="http://www.w3.org/ns/prov#Activity"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Agent -->
+
+    <owl:Class rdf:about="http://www.w3.org/ns/prov#Agent"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Entity -->
+
+    <owl:Class rdf:about="http://www.w3.org/ns/prov#Entity"/>
 </rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+
