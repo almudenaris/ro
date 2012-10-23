@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-    <uri id="User Entered Import Resolution" name="http://purl.org/wf4ever/wfprov" uri="wfprov.owl"/>
-    <uri id="User Entered Import Resolution" name="http://purl.org/wf4ever/wfdesc" uri="wfdesc.owl"/>
-    <uri id="User Entered Import Resolution" name="http://purl.org/wf4ever/wf4ever" uri="wf4ever.owl"/>
-    <uri id="User Entered Import Resolution" name="http://purl.org/wf4ever/ore-owl" uri="ore-owl.owl"/>
-    <uri id="User Entered Import Resolution" name="http://purl.org/wf4ever/ro" uri="ro.owl"/>
+    <uri id="wfprov" name="http://purl.org/wf4ever/wfprov" uri="wfprov.owl"/>
+    <uri id="wfdesc.owl" name="http://purl.org/wf4ever/wfdesc" uri="wfdesc.owl"/>
+    <uri id="wf4ever" name="http://purl.org/wf4ever/wf4ever" uri="wf4ever.owl"/>
+    <uri id="ore-owl" name="http://purl.org/wf4ever/ore-owl" uri="ore-owl.owl"/>
+    <uri id="ro" name="http://purl.org/wf4ever/ro" uri="ro.owl"/>
+    <uri id="dcam" name="http://purl.org/wf4ever/dcam" uri="dcam.owl"/>
+    <uri id="dcterms_od" name="http://purl.org/wf4ever/dcterms_od" uri="dcterms_od.owl"/>
 </catalog>
