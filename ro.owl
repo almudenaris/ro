@@ -18,7 +18,7 @@
                              
                              owl:imports <http://purl.org/dc/terms/> ,
                                          <http://purl.org/ao/core/> ,
-                                         <http://purl.org/wf4ever/dcterms_od> ;
+                                         <http://purl.org/wf4ever/dcterms_od> ,
                                          <http://purl.org/wf4ever/ore-owl> ;
                              
                              rdfs:seeAlso <http://www.wf4ever-project.org/wiki/display/docs/Research+Object+Vocabulary+Specification> ;
