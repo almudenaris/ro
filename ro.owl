@@ -16,7 +16,7 @@
                              
                              rdfs:comment "This ontology shows how AO and ORE ontologies can be used together to define a ResearchObject. This ontology is further customized by the wf4ever ontology."@en ;
                              
-                             owl:imports <http://purl.org/NET/dc_owl2dl/terms_od> ,
+                             owl:imports <http://purl.org/dc/terms/> ,
                                          <http://purl.org/ao/core/> ,
                                          <http://purl.org/wf4ever/ore-owl> ;
                              
@@ -51,6 +51,47 @@
 #
 #################################################################
 
+# Copied from http://bloody-byte.net/rdf/dc_owl2dl/dcterms_od.ttl
+
+
+dcterms:created a owl:DatatypeProperty ;
+	rdfs:label "Date Created"@en-us ;
+	skos:definition "Date of creation of the resource."@en-us ;
+	rdfs:subPropertyOf dcterms:date ;
+	rdfs:range rdfs:Literal .
+
+dcterms:creator a owl:ObjectProperty ;
+	rdfs:label "Creator"@en-us ;
+	skos:definition "An entity primarily responsible for making the resource."@en-us ;
+	rdfs:comment "Examples of a Creator include a person, an organization, or a service. Typically, the name of a Creator should be used to indicate the entity."@en-us ;
+	rdfs:subPropertyOf dcterms:contributor ;
+	rdfs:range dcterms:Agent .
+
+dcterms:date a owl:DatatypeProperty ;
+	rdfs:label "Date"@en-us ;
+	skos:definition "A point or period of time associated with an event in the lifecycle of the resource."@en-us ;
+	rdfs:comment "Date may be used to express temporal information at any level of granularity. Recommended best practice is to use an encoding scheme, such as the W3CDTF profile of ISO 8601 [W3CDTF]."@en-us ;
+	dcterms:bibliographicCitation "[W3CDTF] http://www.w3.org/TR/NOTE-datetime" ;
+	rdfs:seeAlso <http://www.w3.org/TR/NOTE-datetime> ;
+	rdfs:range rdfs:Literal .
+
+
+dcterms:contributor a owl:ObjectProperty ;
+	rdfs:label "Contributor"@en-us ;
+	skos:definition "An entity responsible for making contributions to the resource."@en-us ;
+	rdfs:comment "Examples of a Contributor include a person, an organization, or a service. Typically, the name of a Contributor should be used to indicate the entity."@en-us ;
+	rdfs:range dcterms:Agent .
+
+dcterms:Agent a owl:Class , dcterms:AgentClass ;
+	rdfs:label "Agent"@en-us ;
+	skos:definition "A resource that acts or has the power to act."@en-us ;
+	rdfs:comment "Examples of Agent include person, organization, and software agent."@en-us .
+
+dcterms:AgentClass a owl:Class ;
+	rdfs:label "Agent Class"@en-us ;
+	skos:definition "A group of agents."@en-us ;
+	rdfs:comment "Examples of Agent Class include groups seen as classes, such as students, women, charities, lecturers."@en-us .
+#	rdfs:subClassOf rdfs:Class . # Not allowed in OWL 2 DL, neither rdfs:Class nor owl:Class.    
 
 
 #################################################################
