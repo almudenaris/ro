@@ -82,6 +82,22 @@
     
 
 
+    <!-- http://purl.org/wf4ever/ro#rootFolder -->
+
+    <owl:ObjectProperty rdf:about="&ro;rootFolder">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:comment xml:lang="en">The suggested root ro:Folder for the ro:ResearchObject. This folder should not be aggregated within other ro:Folders and can be seen as the top level folder for other ro:Folders in this RO. 
+
+This folder structure, if stated, is the RO creator&apos;s preferred view of organizing the RO resources. Note that the content of any folder directly or indirectly below the ro:rootFolder (including subfolders) MUST also be aggregated by the ro:ResearchObject itself.</rdfs:comment>
+        <rdfs:range rdf:resource="&ro;Folder"/>
+        <rdfs:domain rdf:resource="&ro;ResearchObject"/>
+        <rdfs:subPropertyOf rdf:resource="&ore;aggregates"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -139,6 +155,18 @@ TODO: Need a functional property to specify the top level folder structure of an
         <rdfs:subClassOf rdf:resource="&ore;AggregatedResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&dct;created"/>
+                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dct;creator"/>
+                <owl:someValuesFrom rdf:resource="&foaf;Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&ao;annotatesResource"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -155,18 +183,6 @@ TODO: Need a functional property to specify the top level folder structure of an
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ore;isAggregatedBy"/>
                 <owl:someValuesFrom rdf:resource="&ro;ResearchObject"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&dct;creator"/>
-                <owl:someValuesFrom rdf:resource="&foaf;Agent"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&dct;created"/>
-                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">An annotation aggregated within an ro:ResearchObject.  
@@ -247,14 +263,14 @@ Such folders can be nested and (optionally) used to organize the resources of th
         <rdfs:subClassOf rdf:resource="&ore;Aggregation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dct;created"/>
-                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
+                <owl:onProperty rdf:resource="&dct;creator"/>
+                <owl:someValuesFrom rdf:resource="&foaf;Agent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dct;creator"/>
-                <owl:someValuesFrom rdf:resource="&foaf;Agent"/>
+                <owl:onProperty rdf:resource="&dct;created"/>
+                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">A research object aggregates a number of resources. A resource can be a workflow, web service, document, data item, data set, workflow run, software or a research object.</rdfs:comment>
@@ -268,12 +284,6 @@ Such folders can be nested and (optionally) used to organize the resources of th
         <rdfs:subClassOf rdf:resource="&ore;AggregatedResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ore;isAggregatedBy"/>
-                <owl:someValuesFrom rdf:resource="&ro;ResearchObject"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty>
                     <rdf:Description>
                         <owl:inverseOf rdf:resource="&ore;proxyFor"/>
@@ -285,6 +295,12 @@ Such folders can be nested and (optionally) used to organize the resources of th
                         <owl:someValuesFrom rdf:resource="&ro;ResearchObject"/>
                     </owl:Restriction>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ore;isAggregatedBy"/>
+                <owl:someValuesFrom rdf:resource="&ro;ResearchObject"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">An ro:Resource is an ore:AggregatedResource which ore:isAggregatedBy an ro:ResearchObject. 
