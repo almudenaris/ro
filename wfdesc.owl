@@ -80,6 +80,16 @@ This ontology is meant as an upper ontology for more specific workflow definitio
     
 
 
+    <!-- http://purl.org/wf4ever/wfdesc#hasConfiguration -->
+
+    <owl:ObjectProperty rdf:about="&wfdesc;hasConfiguration">
+        <rdfs:comment xml:lang="en">This object property is used to specify the wfdesc:Configuration parameter of a given wfdesc:Process.</rdfs:comment>
+        <rdfs:range rdf:resource="&wfdesc;Configuration"/>
+        <rdfs:domain rdf:resource="&wfdesc;Process"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.org/wf4ever/wfdesc#hasDataLink -->
 
     <owl:ObjectProperty rdf:about="&wfdesc;hasDataLink">
