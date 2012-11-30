@@ -174,23 +174,6 @@ This is a specialisation of wfdesc:hasSubProcess.</rdfs:comment>
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Data properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
-
-    <owl:DatatypeProperty rdf:about="&rdfs;label"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -241,14 +224,7 @@ Thus links can only be made within a wfdesc:Workflow - although ports owned by t
 
     <!-- http://purl.org/wf4ever/wfdesc#Description -->
 
-    <owl:Class rdf:about="&wfdesc;Description">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&rdfs;label"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
+    <owl:Class rdf:about="&wfdesc;Description"/>
     
 
 
