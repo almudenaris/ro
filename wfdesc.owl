@@ -101,6 +101,16 @@ This ontology is meant as an upper ontology for more specific workflow definitio
     
 
 
+    <!-- http://purl.org/wf4ever/wfdesc#hasImplementation -->
+
+    <owl:ObjectProperty rdf:about="&wfdesc;hasImplementation">
+        <rdfs:comment xml:lang="en">The implementation that is invoked when running the wfdesc:Process, like a wf4ever:Script or wf4ever:WebService. </rdfs:comment>
+        <rdfs:domain rdf:resource="&wfdesc;Process"/>
+        <rdfs:range rdf:resource="&wfdesc;ProcessImplementation"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.org/wf4ever/wfdesc#hasInput -->
 
     <owl:ObjectProperty rdf:about="&wfdesc;hasInput">
@@ -167,6 +177,17 @@ This is a specialisation of wfdesc:hasSubProcess.</rdfs:comment>
         <rdfs:domain rdf:resource="&wfdesc;Workflow"/>
         <rdfs:range rdf:resource="&wfdesc;Workflow"/>
         <rdfs:subPropertyOf rdf:resource="&wfdesc;hasSubProcess"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/wf4ever/wfdesc#hasWorkflowDefinition -->
+
+    <owl:ObjectProperty rdf:about="&wfdesc;hasWorkflowDefinition">
+        <rdfs:comment xml:lang="en">The definition of this workflow, typically a file natively understood by the wfdesc:WorkflowEngine.</rdfs:comment>
+        <rdfs:domain rdf:resource="&wfdesc;Workflow"/>
+        <rdfs:range rdf:resource="&wfdesc;WorkflowDefinition"/>
+        <rdfs:subPropertyOf rdf:resource="&wfdesc;hasImplementation"/>
     </owl:ObjectProperty>
     
 
@@ -283,6 +304,15 @@ It is out of scope for wfdesc to classify or specify the nature of the process, 
     
 
 
+    <!-- http://purl.org/wf4ever/wfdesc#ProcessImplementation -->
+
+    <owl:Class rdf:about="&wfdesc;ProcessImplementation">
+        <rdfs:subClassOf rdf:resource="&wfdesc;Description"/>
+        <rdfs:comment xml:lang="en">The implementation that is invoked when running the wfdesc:Process, like a wf4ever:Script or wf4ever:WebService. </rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://purl.org/wf4ever/wfdesc#Workflow -->
 
     <owl:Class rdf:about="&wfdesc;Workflow">
@@ -336,6 +366,15 @@ Example:
 In this example :param1 is the output of :procA. :param1 is the source in a datalink that goes to the input :param4 of the :innerWorkflow. :param4 is however also the source of an inner datalink, going to input :param6 of the nested :procB.
 
 From this :param4 is both an wfdesc:Input and wfdesc:Output (which is why these two classes are not disjoint)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/wfdesc#WorkflowDefinition -->
+
+    <owl:Class rdf:about="&wfdesc;WorkflowDefinition">
+        <rdfs:subClassOf rdf:resource="&wfdesc;ProcessImplementation"/>
+        <rdfs:comment xml:lang="en">The definition of this workflow, typically a file natively understood by the wfdesc:WorkflowEngine.</rdfs:comment>
     </owl:Class>
     
 
