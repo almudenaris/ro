@@ -25,7 +25,8 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://purl.org/wf4ever/roevo">
         <rdfs:comment xml:lang="en">The Research Object evolution ontology (roevo) extends the ro ontology to capture the lifecycle and versioning of research objects. roevo follows a modular approach, enabling the creation of extensions for modeling detailed taxonomies of changes for particular resources, e.g., workflows. roevo v0.4 has been aligned with PROV Ontology.</rdfs:comment>
-        <owl:versionIRI rdf:resource="http://purl.org/wf4ever/roevo/0.4"/>
+        <owl:versionIRI rdf:resource="http://purl.org/wf4ever/roevo/0.5"/>
+        <owl:imports rdf:resource="http://www.w3.org/ns/prov-o#"/>
     </owl:Ontology>
     
 
@@ -74,6 +75,7 @@
     <owl:ObjectProperty rdf:about="&roevo;fromVersion">
         <rdfs:domain rdf:resource="&roevo;ChangeSpecification"/>
         <rdfs:range rdf:resource="&roevo;VersionableResource"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;used"/>
     </owl:ObjectProperty>
     
 
@@ -149,6 +151,7 @@
     <owl:ObjectProperty rdf:about="&roevo;toVersion">
         <rdfs:domain rdf:resource="&roevo;ChangeSpecification"/>
         <rdfs:range rdf:resource="&roevo;VersionableResource"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;generated"/>
     </owl:ObjectProperty>
     
 
@@ -179,75 +182,6 @@
         <rdfs:domain rdf:resource="&roevo;SnapshotRO"/>
         <rdfs:range rdf:resource="&prov;Agent"/>
         <rdfs:subPropertyOf rdf:resource="&prov;wasAttributedTo"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#hadOriginalSource -->
-
-    <owl:ObjectProperty rdf:about="&prov;hadOriginalSource">
-        <rdfs:range rdf:resource="&prov;Entity"/>
-        <rdfs:domain rdf:resource="&prov;Entity"/>
-        <rdfs:subPropertyOf rdf:resource="&prov;wasDerivedFrom"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#used -->
-
-    <owl:ObjectProperty rdf:about="&prov;used"/>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#wasAssociatedWith -->
-
-    <owl:ObjectProperty rdf:about="&prov;wasAssociatedWith">
-        <rdfs:domain rdf:resource="&prov;Activity"/>
-        <rdfs:range rdf:resource="&prov;Agent"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#wasAttributedTo -->
-
-    <owl:ObjectProperty rdf:about="&prov;wasAttributedTo"/>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#wasDerivedFrom -->
-
-    <owl:ObjectProperty rdf:about="&prov;wasDerivedFrom">
-        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
-        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
-        <rdfs:range rdf:resource="&prov;Entity"/>
-        <rdfs:domain rdf:resource="&prov;Entity"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#wasGeneratedBy -->
-
-    <owl:ObjectProperty rdf:about="&prov;wasGeneratedBy"/>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#wasQuotedFrom -->
-
-    <owl:ObjectProperty rdf:about="&prov;wasQuotedFrom">
-        <rdfs:domain rdf:resource="&prov;Entity"/>
-        <rdfs:range rdf:resource="&prov;Entity"/>
-        <rdfs:subPropertyOf rdf:resource="&prov;wasDerivedFrom"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#wasRevisionOf -->
-
-    <owl:ObjectProperty rdf:about="&prov;wasRevisionOf">
-        <owl:inverseOf rdf:resource="&roevo;hasRevision"/>
-        <rdfs:range rdf:resource="&prov;Entity"/>
-        <rdfs:domain rdf:resource="&prov;Entity"/>
-        <rdfs:subPropertyOf rdf:resource="&prov;wasDerivedFrom"/>
     </owl:ObjectProperty>
     
 
@@ -285,32 +219,6 @@
         <rdfs:domain rdf:resource="&roevo;SnapshotRO"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
         <rdfs:subPropertyOf rdf:resource="&prov;generatedAtTime"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#endedAtTime -->
-
-    <owl:DatatypeProperty rdf:about="&prov;endedAtTime">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:range rdf:resource="&xsd;dateTime"/>
-        <rdfs:domain rdf:resource="&prov;Activity"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#generatedAtTime -->
-
-    <owl:DatatypeProperty rdf:about="&prov;generatedAtTime"/>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#startedAtTime -->
-
-    <owl:DatatypeProperty rdf:about="&prov;startedAtTime">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:range rdf:resource="&xsd;dateTime"/>
-        <rdfs:domain rdf:resource="&prov;Activity"/>
     </owl:DatatypeProperty>
     
 
@@ -447,24 +355,6 @@
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#Activity -->
-
-    <owl:Class rdf:about="&prov;Activity"/>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#Agent -->
-
-    <owl:Class rdf:about="&prov;Agent"/>
-    
-
-
-    <!-- http://www.w3.org/ns/prov#Entity -->
-
-    <owl:Class rdf:about="&prov;Entity"/>
 </rdf:RDF>
 
 
