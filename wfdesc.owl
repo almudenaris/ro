@@ -391,6 +391,34 @@ A wfdesc:Workflow description can specify its wfdesc:WorkflowDefinition using wf
         <rdfs:subClassOf rdf:resource="&wfdesc;Workflow"/>
         <rdfs:comment xml:lang="en">A wfdesc:WorkflowInstance is a specialisation of a wfdesc:Workflow description which defines all data/parameters/settings that are required to form a wfprov:WorkflowRun.</rdfs:comment>
     </owl:Class>
+
+    <!-- http://purl.org/wf4ever/wfdesc#ProcessImplementation -->
+
+    <rdf:Description rdf:about="&wfdesc;ProcessImplementation">
+        <rdfs:seeAlso rdf:resource="&wfdesc;hasImplementation"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/wf4ever/wfdesc#Workflow -->
+
+    <rdf:Description rdf:about="&wfdesc;Workflow">
+        <rdfs:seeAlso rdf:resource="&wfdesc;WorkflowDefinition"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="&wfdesc;WorkflowDefinition">
+        <rdfs:seeAlso rdf:resource="&wfdesc;hasWorkflowDefinition"/>
+    </rdf:Description>
 </rdf:RDF>
 
 
