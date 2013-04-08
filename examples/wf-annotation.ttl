@@ -141,7 +141,7 @@ the description is on multiple lines."""@en .
 # can have only a single wfdesc:Artifact 
 :proc1Out wfdesc:hasArtifact [
     dcterms:format [ a dcterms:IMT ; 
-                     rdF:value "text/plain" ] ;
+                     rdf:value "text/plain" ] ;
     roterms:ofSemanticType <http://example.com/vocab#filenames> ;
     roterms:ofStructuralType [
         a ex:MadeUpStructuralType ;
