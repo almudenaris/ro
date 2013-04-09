@@ -1,0 +1,270 @@
+@prefix : <http://purl.org/wf4ever/roterms> .
+@prefix co: <http://purl.org/co/> .
+@prefix ro: <http://purl.org/wf4ever/ro#> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix ore: <http://www.openarchives.org/ore/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+@prefix roterms: <http://purl.org/wf4ever/roterms#> .
+@prefix wf4ever: <http://purl.org/wf4ever/wf4ever#> .
+@base <http://purl.org/wf4ever/roterms#> .
+
+<http://purl.org/wf4ever/roterms#> rdf:type owl:Ontology ;
+                                   
+                                   rdfs:label "RO terms"@en ;
+                                   
+                                   owl:versionInfo "0.1.0"^^xsd:string ;
+                                   
+                                   <http://purl.org/dc/elements/1.1/contributor> "Graham Klyne"@en ,
+                                                                                 "Khalid Belhajjame"@en ;
+                                   
+                                   <http://purl.org/dc/elements/1.1/creator> "Stian Soiland-Reyes"@en ;
+                                   
+                                   rdfs:comment """Terms for further describing and annotating Research Objects. 
+
+Many of these terms can be seen as \"shortcuts\", for instance roterms:inputSelected is applied directly from a wfdesc:WorkflowDefinition to a ro:Resource; to say that a file is meant to be used with a given workflow definition; but without detailing at which input port or in which workflow run.
+
+Other terms provide common properties and classes for user annotations, such as roterms:Hypothesis and roterms:exampleValue."""@en ;
+                                   
+                                   owl:imports <http://purl.org/co> ,
+                                               <http://purl.org/wf4ever/wf4ever> ,
+                                               <http://www.w3.org/2011/content> ,
+                                               <http://www.w3.org/ns/dcat> ;
+                                   
+                                   owl:versionIRI <https://github.com/wf4ever/ro/blob/master/roterms.owl> .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  http://purl.org/dc/elements/1.1/contributor
+
+<http://purl.org/dc/elements/1.1/contributor> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/elements/1.1/creator
+
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://purl.org/wf4ever/roterms#defaultValue
+
+roterms:defaultValue rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:label "default value"@en ;
+                     
+                     rdfs:comment """The default value for a wfdesc:Input or wfdesc:Configuration.
+
+The default value is not a suggested value (see roterms:exampleValue), it is the value that is inherently assumed if no value is provided by the workflow instance, for instance because there is no wfdesc:DataLink connected to the wfdesc:Input.
+
+The value is given as an roterms:WorkflowValue instance, which allows specification of the value typically as text (cnt:chars), Base64 encoded bytes (cnt:bytes) or a collection of these (co:element)."""@en ;
+                     
+                     rdfs:domain wfdesc:Parameter ;
+                     
+                     rdfs:subPropertyOf owl:topObjectProperty .
+
+
+
+###  http://purl.org/wf4ever/roterms#exampleValue
+
+roterms:exampleValue rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:label "example value"@en ;
+                     
+                     rdfs:comment """An example value for a given input or output parameter. The value is given as an roterms:WorkflowValue instance, which allows specification of the value typically as text (cnt:chars), Base64 encoded bytes (cnt:bytes) or a collection of these (co:element).
+
+""" ;
+                     
+                     rdfs:domain wfdesc:Parameter ;
+                     
+                     rdfs:subPropertyOf owl:topObjectProperty .
+
+
+
+###  http://purl.org/wf4ever/roterms#ofSemanticType
+
+roterms:ofSemanticType rdf:type owl:ObjectProperty ;
+                       
+                       rdfs:label "of semantic type"@en ;
+                       
+                       rdfs:comment """The wfdesc:Artifact describes a potential wfdesc:WorkflowValue which is of the given semantic type.
+
+The range of this property is given as skos:Concept, because it is envisioned that URIs from any existing (general and domain-specific) vocabularies could be used. It MAY be used with URIs identifying owl:Class-es; indicating that when a workflow is run, it's wfprov:Artifact's would be instances of that type.
+ 
+Unlike the structural type (see roterms:ofStructuralType), the semantic type defines the domain-specific meaning or role of the expected value, for instance Genome Sequence or X-ray image."""@en ;
+                       
+                       rdfs:domain wfdesc:Artifact ;
+                       
+                       rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+
+###  http://purl.org/wf4ever/roterms#ofStructuralType
+
+roterms:ofStructuralType rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:label "of structural type"@en ;
+                         
+                         rdfs:comment """The wfdesc:Artifact describes a potential wfdesc:WorkflowValue which is of the given structural type.
+
+The format (media type) of the value SHOULD be specified using dct:format. This property MAY be used when the format is not specific enough, for instance dct:format [ rdv:value \"application/xml\" ] specifies the serialization as XML, while roterms:ofStructuralType might point to the XML schema.
+
+The range of this property is undefined, it is expected that format-specific classes would define how to define the structural requirements."""@en .
+
+
+
+###  http://purl.org/wf4ever/roterms#performsTask
+
+roterms:performsTask rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:label "performs task"@en ;
+                     
+                     rdfs:comment """The resource is intended to functionally perform the given task. 
+
+This property does not specify a domain, but SHOULD generally have a subject like software, workflows and services. It MAY however also be used with agents, such as an foaf:Organization or crowd sourcing.
+
+This property does not specify the task (beyond being a skos:Concept), as it is intended to reuse existing vocabularies. A task might be for general purposes like copying a file and calculating a numeric average, or domain-specific tasks like aligning genome sequences and identifying galaxies."""@en ;
+                     
+                     rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+
+###  http://purl.org/wf4ever/roterms#requiresDataset
+
+roterms:requiresDataset rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:label "requires dataset"@en ;
+                        
+                        rdfs:comment "The resource requires the given dataset to function. Although the range is dcat:Dataset, this property does not specify how to detail the dataset, it might be a general requirement (any reference genome) or a particular dataset (an XML file located at a specific URI). "@en ;
+                        
+                        rdfs:subPropertyOf <http://purl.org/dc/terms/requires> ;
+                        
+                        rdfs:range dcat:Dataset .
+
+
+
+###  http://purl.org/wf4ever/roterms#requiresHardware
+
+roterms:requiresHardware rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:label "requires hardware"@en ;
+                         
+                         rdfs:comment "The resource requires the given hardware to function. This property has no particular requirements on how to specify the hardware, it might be a general requirement (x86 Intel architecture) or a particular machine (the super computer Blue Gene)."@en ;
+                         
+                         rdfs:subPropertyOf <http://purl.org/dc/terms/requires> .
+
+
+
+###  http://purl.org/wf4ever/roterms#requiresSoftware
+
+roterms:requiresSoftware rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:label "requires software"@en ;
+                         
+                         rdfs:comment "The resource requires the given software to function. This property has no particular requirements on how to specify the software, it might be a general requirement (Linux), or a particular software installation (python-minimal 2.6.5-0ubuntu1)."@en ;
+                         
+                         rdfs:subPropertyOf <http://purl.org/dc/terms/requires> .
+
+
+
+###  http://purl.org/wf4ever/roterms#technicalContact
+
+roterms:technicalContact rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:label "technical contact"@en ;
+                         
+                         rdfs:comment """The technical support contact for the  resource, given as a foaf:Agent.
+ 
+This property does not specify a domain, but could be used on resources like software, workflows, services, vocabularies, datasets, etc.
+
+The agent SHOULD have a foaf:name. It SHOULD have one of foaf:mbox, foaf:phone or foaf:homepage. The agent may be a foaf:Person (e.g. technical contact),  foaf:Group (e.g. mailing lists) or other kind of agent (like automated support)."""@en ;
+                         
+                         rdfs:range <http://xmlns.com/foaf/0.1/Agent> .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://purl.org/co/Collection
+
+co:Collection rdfs:subClassOf roterms:WorkflowValue .
+
+
+
+###  http://purl.org/wf4ever/roterms#OptionalInput
+
+roterms:OptionalInput rdf:type owl:Class ;
+                      
+                      rdfs:label "Optional input"@en ;
+                      
+                      rdfs:subClassOf wfdesc:Input ;
+                      
+                      rdfs:comment """An input parameter that is optional, meaning a value is not (always) neccessary for correct execution. 
+
+An optional parameter therefore does not need to be connected to a datalink, or it might receive an empty (null-like) value.
+
+The process might internally assume a roterms:defaultParameter if the input is not provided."""@en ;
+                      
+                      rdfs:seeAlso roterms:defaultValue .
+
+
+
+###  http://purl.org/wf4ever/roterms#WorkflowValue
+
+roterms:WorkflowValue rdf:type owl:Class ;
+                      
+                      rdfs:label "Workflow value"@en ;
+                      
+                      rdfs:subClassOf prov:Entity ;
+                      
+                      rdfs:comment """A workflow value. The value is a piece of data that was used or generated by a wfdesc:WorkflowRun (as a wfprov:Artifact), or it be a suggested value for a wfdesc:Parameter given by roterms:exampleValue or roterms:defaultValue.
+
+A value can be provided as a resource (just a URI), embedded in RDF as text (cnt:ContentAsText), bytes (cnt:ContentAsBase64), or be a co:Collection of other roterms:WorkflowValue, typically an ordered co:List."""@en .
+
+
+
+###  http://purl.org/wf4ever/wfprov#Artifact
+
+wfprov:Artifact rdfs:subClassOf roterms:WorkflowValue .
+
+
+
+###  http://www.w3.org/2011/content#Content
+
+cnt:Content rdfs:subClassOf roterms:WorkflowValue .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+
