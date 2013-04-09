@@ -96,6 +96,28 @@ the description is on multiple lines."""@en .
         dcterms:identifer "e697256d-9c73-4206-8069-8297a244254c" .
     ] .
 
+
+_:ann1 a oa:Annotation ;
+    oa:hasTarget :wf;
+    oa:hasBody <http://example.com/review1> ;
+    oa:motivation oa:commenting .   
+
+_:ann2 a oa:Annotation ;
+    oa:hasTarget :wf;
+    oa:hasBody [ a oa:Tag;
+                 cnt:chars "tag1" ] .
+
+:wf cito:isDocumentedBy <http://example.com/doc> .
+
+:wf cito:isCitedBy <http://dx.doi.org/10.1000/182> .
+
+:wf dcterms:audience <http://www.egi.co.uk/> .
+:wf dcterms:mediator <http://www.biovel.eu/> .
+:wf dcterms:audience <http://www.mygrid.org.uk/> .
+
+
+:parentWf wfdesc:hasSubWorkflow :wf .
+
 :wf roterms:hasDependency <http://ns.taverna.org.uk/2010/activity/tool>,
     <http://ns.taverna.org.uk/2010/xml/t2flow/raven/net.sf.taverna.t2.activities/interaction-activity/1.0.0/net.sf.taverna.t2.activities.interaction.InteractionActivity> .
 
