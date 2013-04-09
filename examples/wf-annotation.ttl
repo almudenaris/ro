@@ -101,7 +101,7 @@ the description is on multiple lines."""@en .
 _:ann1 a oa:Annotation ;
     oa:hasTarget :wf;
     oa:hasBody <http://example.com/review1> ;
-    oa:motivation oa:commenting .   
+    oa:motivatedBy oa:commenting .   
 
 _:ann2 a oa:Annotation ;
     oa:hasTarget :wf;
