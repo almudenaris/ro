@@ -8,6 +8,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix cito: <http://purl.org/spar/cito/> .
 
 @prefix ro: <http://purl.org/wf4ever/ro#> .
 @prefix roterms: <http://purl.org/wf4ever/roterms#> .
