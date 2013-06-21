@@ -3,6 +3,7 @@
 
 <!DOCTYPE rdf:RDF [
     <!ENTITY ao "http://purl.org/ao/" >
+    <!ENTITY oa "http://www.w3.org/ns/oa#" >
     <!ENTITY dct "http://purl.org/dc/terms/" >
     <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
     <!ENTITY ro "http://purl.org/wf4ever/ro#" >
@@ -10,7 +11,7 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY ore "http://www.openarchives.org/ore/terms/" >
-    <!ENTITY rdfg "http://www.w3.org/2004/03/trix/rdfg-1/" >
+    <!ENTITY trig "http://www.w3.org/2004/03/trix/rdfg-1/" >
     <!ENTITY geo "http://www.w3.org/2003/01/geo/wgs84_pos#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY cont "http://www.w3.org/2000/10/swap/pim/contact#" >
@@ -19,49 +20,29 @@
 
 <rdf:RDF xmlns="http://purl.org/wf4ever/ro"
      xml:base="http://purl.org/wf4ever/ro"
+     xmlns:trig="http://www.w3.org/2004/03/trix/rdfg-1/"
      xmlns:ro="http://purl.org/wf4ever/ro#"
      xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:ore="http://www.openarchives.org/ore/terms/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:oa="http://www.w3.org/ns/oa#"
      xmlns:ao="http://purl.org/ao/"
      xmlns:dct="http://purl.org/dc/terms/"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:cont="http://www.w3.org/2000/10/swap/pim/contact#"
-     xmlns:rdfg="http://www.w3.org/2004/03/trix/rdfg-1/">
+     xmlns:cont="http://www.w3.org/2000/10/swap/pim/contact#">
     <owl:Ontology rdf:about="http://purl.org/wf4ever/ro">
         <rdfs:comment xml:lang="en">This ontology shows how AO and ORE ontologies can be used together to define a ResearchObject. This ontology is further customized by the wf4ever ontology.</rdfs:comment>
         <owl:imports rdf:resource="&ao;core/"/>
         <owl:imports rdf:resource="http://purl.org/wf4ever/dcterms_od"/>
         <owl:imports rdf:resource="http://purl.org/wf4ever/ore-owl"/>
+        <owl:imports rdf:resource="http://www.w3.org/ns/oa#"/>
         <rdfs:seeAlso rdf:resource="http://www.wf4ever-project.org/wiki/display/docs/Research+Object+Vocabulary+Specification"/>
         <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <owl:versionIRI rdf:resource="https://raw.github.com/wf4ever/ro/master/ro.owl"/>
     </owl:Ontology>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotation properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Datatypes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
     
 
 
@@ -73,6 +54,22 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://purl.org/ao/annotatesResource -->
+
+    <rdf:Description rdf:about="&ao;annotatesResource">
+        <owl:equivalentProperty rdf:resource="&oa;hasTarget"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/ao/body -->
+
+    <rdf:Description rdf:about="&ao;body">
+        <owl:equivalentProperty rdf:resource="&oa;hasBody"/>
+    </rdf:Description>
     
 
 
@@ -95,6 +92,18 @@ This folder structure, if stated, is the RO creator&apos;s preferred view of org
         <rdfs:domain rdf:resource="&ro;ResearchObject"/>
         <rdfs:subPropertyOf rdf:resource="&ore;aggregates"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/oa#hasBody -->
+
+    <rdf:Description rdf:about="&oa;hasBody"/>
+    
+
+
+    <!-- http://www.w3.org/ns/oa#hasTarget -->
+
+    <rdf:Description rdf:about="&oa;hasTarget"/>
     
 
 
@@ -142,32 +151,20 @@ TODO: Need a functional property to specify the top level folder structure of an
     
 
 
-    <!-- http://purl.org/ao/GraphAnnotation -->
-
-    <owl:Class rdf:about="&ao;GraphAnnotation"/>
-    
-
-
     <!-- http://purl.org/wf4ever/ro#Annotation -->
 
     <owl:Class rdf:about="&ro;Annotation">
-        <rdfs:subClassOf rdf:resource="&ao;GraphAnnotation"/>
         <rdfs:subClassOf rdf:resource="&ore;AggregatedResource"/>
+        <rdfs:subClassOf rdf:resource="&oa;Annotation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dct;created"/>
-                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
+                <owl:onProperty rdf:resource="&ore;isAggregatedBy"/>
+                <owl:someValuesFrom rdf:resource="&ro;ResearchObject"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dct;creator"/>
-                <owl:someValuesFrom rdf:resource="&foaf;Agent"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&ao;annotatesResource"/>
+                <owl:onProperty rdf:resource="&oa;hasTarget"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
@@ -181,17 +178,23 @@ TODO: Need a functional property to specify the top level folder structure of an
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ore;isAggregatedBy"/>
-                <owl:someValuesFrom rdf:resource="&ro;ResearchObject"/>
+                <owl:onProperty rdf:resource="&dct;created"/>
+                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dct;creator"/>
+                <owl:someValuesFrom rdf:resource="&foaf;Agent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">An annotation aggregated within an ro:ResearchObject.  
 
-Instances of this class are used to annotated resources aggregated within the aggregating research object, proxies of these resources, or the research object itself. In other words, if :ro is the ro:ResearchObject this annotation has been ore:isAggregatedBy, then the annotation should have at least one ao:annotatesResource which is an ore:AggregatedResource which is ore:isAggregatedBy :ro, or the annotated resource is an ore:Proxy which ore:proxyIn :ro, or the annotated resource is :ro.
+Instances of this class are used to annotated resources aggregated within the aggregating research object, proxies of these resources, or the research object itself. In other words, if :ro is the ro:ResearchObject this annotation has been ore:isAggregatedBy, then the annotation should have at least one oa:hasTarget which is an ore:AggregatedResource which is ore:isAggregatedBy :ro, or the annotated resource is an ore:Proxy which ore:proxyIn :ro, or the annotated resource is :ro.
 
 It is possible for the annotation to also annotate non-aggregated resources, but as above, at least one of them needs to be part of the RO or the RO itself.
 
-As a subclass of ao:GraphAnnotation the ao:body must point to an rdfg:Graph which contains the actual annotation. </rdfs:comment>
+For semantic annotations, the oa:hasBody SHOULD point to an trig:Graph which contains the actual annotation.</rdfs:comment>
     </owl:Class>
     
 
@@ -216,14 +219,14 @@ Such folders can be nested and (optionally) used to organize the resources of th
     <owl:Class rdf:about="&ro;FolderEntry">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;entryName"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="&ore;proxyIn"/>
+                <owl:someValuesFrom rdf:resource="&ro;Folder"/>
             </owl:Restriction>
         </owl:equivalentClass>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ore;proxyIn"/>
-                <owl:someValuesFrom rdf:resource="&ro;Folder"/>
+                <owl:onProperty rdf:resource="&ro;entryName"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&ore;Proxy"/>
@@ -263,14 +266,14 @@ Such folders can be nested and (optionally) used to organize the resources of th
         <rdfs:subClassOf rdf:resource="&ore;Aggregation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dct;creator"/>
-                <owl:someValuesFrom rdf:resource="&foaf;Agent"/>
+                <owl:onProperty rdf:resource="&dct;created"/>
+                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dct;created"/>
-                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
+                <owl:onProperty rdf:resource="&dct;creator"/>
+                <owl:someValuesFrom rdf:resource="&foaf;Agent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">A research object aggregates a number of resources. A resource can be a workflow, web service, document, data item, data set, workflow run, software or a research object.</rdfs:comment>
@@ -318,5 +321,5 @@ Aggregated resources MAY also be organised in (potentially nested) ro:Folders to
 
 
 
-<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 
