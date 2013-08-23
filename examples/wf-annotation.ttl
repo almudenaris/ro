@@ -1,0 +1,177 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl# > .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix cito: <http://purl.org/spar/cito/> .
+
+@prefix ro: <http://purl.org/wf4ever/ro#> .
+@prefix roterms: <http://purl.org/wf4ever/roterms#> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+
+@prefix ex: <http://example.com/vocab#> .
+@prefix : <http://example.com/workflow1#> .
+
+<> dcterms:title "Examples of using Taverna workflow Annotations"@en ;
+   pav:authoredBy [ foaf:name "Stian Soiland-Reyes" ] .
+
+# Dummy wfdesc workflow for the below annotations
+# This structure is produced by scufl2-wfdesc
+:wf a wfdesc:Workflow ;
+    wfdesc:hasSubProcess :proc1, :proc2 ;
+    wfdesc:hasSubWorkflow :proc2 ;
+    wfdesc:hasInput :wfIn1, :wfIn2 ;
+    wfdesc:hasOutput :wfOut1 .
+    wfdesc:hasDataLink 
+      [ wfdesc:hasSource :wfIn1;
+	wfdesc:hasSink :proc1In ],
+      [ wfdesc:hasSource :proc1Out;
+	wfdesc:hasSink :proc2In ] ,
+      [ wfdesc:hasSource :proc2Out;
+	wfdesc:hasSink :wfOut1 ] .
+:proc1 a wfdesc:Process ;
+    wfdesc:hasInput :proc1In, :proc1InOptional ;
+    wfdesc:hasOutput :proc1Out ;
+    wfdesc:hasImplementation :proc1Impl .
+
+:proc1Impl a wf4ever:CommandLineTool 
+    wf4ever:command """ls /tmp""" .
+
+:proc2 a wfdesc:Workflow, wfdesc:Process ;
+    wfdesc:hasInput :procIn2 ;
+    wfdesc:hasOutput :proc2Out ;
+    wfdesc:hasSubProcess :nestedProc .
+# Note: Details of nested workflow not included in this example
+:nestedProc a wfdesc:Process .
+#####
+
+
+### Annotations on workflows:
+:wf dcterms:title "A very simple workflow"@en ;
+    dcterms:description """It is such a nice workflow that
+the description is on multiple lines."""@en .
+
+:wf dcterms:created "2012-12-27T16:03:24Z"^^xsd:dateTime ; # Time of first edit
+    dcterms:modified "2013-04-08T09:14:42Z"^^xsd:dateTime . # time of last edit
+
+
+:wf dcterms:license <http://opensource.org/licenses/Apache-2.0> ;
+# Should include dcterms:title in addition to the URI
+<http://opensource.org/licenses/Apache-2.0> dcterms:title "Apache License, Version 2.0" .
+
+
+:wf pav:derivedFrom :otherWf .
+:otherWf foaf:isPrimaryTopicOf <www.myexperiment.org/workflows/2648> .
+
+
+:wf pav:authoredBy 
+    [ a foaf:Person ; 
+      # MUST have foaf:name
+      foaf:name "Stian Soiland-Reyes" ;
+      # MAY specify an ORCID
+      owl:sameAs <http://orcid.org/0000-0001-9842-9718> ]
+    [ a foaf:Person ;
+      foaf:name "Khalid Belhajjame" ;
+      # SHOULD specify a homepage
+      foaf:homepage <http://semanticweb.org/wiki/Khalid_Belhajjame> 
+    ] .
+
+:wf pav:contributedBy 
+	[ # same requirements as above, but MUST have foaf:name
+          foaf:name "Alan R Williams" ] .
+
+:wf roterms:contact 
+	<mailto:support@mygrid.org.uk>, 
+	<tel:+44-161-275-0689>, 
+	<https://groups.google.com/d/forum/wf4ever-public> .
+
+:wf pav:version 0.2 ;
+    dcterms:identifier "91b9e69f-64ac-4a8b-a4f8-7a6255ecd013" ;
+    pav:previousVersion [ a wfdesc:Workflow ;
+        dcterms:identifer "e697256d-9c73-4206-8069-8297a244254c" .
+    ] .
+
+
+_:ann1 a oa:Annotation ;
+    oa:hasTarget :wf;
+    oa:hasBody <http://example.com/review1> ;
+    oa:motivatedBy oa:commenting .   
+
+_:ann2 a oa:Annotation ;
+    oa:hasTarget :wf;
+    oa:hasBody [ a oa:Tag;
+                 cnt:chars "tag1" ] .
+
+:wf cito:isDocumentedBy <http://example.com/doc> .
+
+:wf cito:isCitedBy <http://dx.doi.org/10.1000/182> .
+
+:wf dcterms:audience <http://www.egi.co.uk/> .
+:wf dcterms:mediator <http://www.biovel.eu/> .
+:wf dcterms:audience <http://www.mygrid.org.uk/> .
+
+
+:parentWf wfdesc:hasSubWorkflow :wf .
+
+:wf roterms:hasDependency <http://ns.taverna.org.uk/2010/activity/tool>,
+    <http://ns.taverna.org.uk/2010/xml/t2flow/raven/net.sf.taverna.t2.activities/interaction-activity/1.0.0/net.sf.taverna.t2.activities.interaction.InteractionActivity> .
+
+:wf foaf:depication <http://www.myexperiment.org/workflows/2648/versions/1/previews/full> .
+########
+
+    
+
+### Annotations on processes:
+:proc1 a wfdesc:Process ;
+    wfdesc:hasImplementation :proc1Impl .
+:proc1Impl a wf4ever:CommandLineTool 
+    wf4ever:command """ls /tmp""" .
+
+:proc1 roterms:performsTask <http://example.com/vocab#listing-files> .
+
+:proc1Impl roterms:hasDependency <http://example.com/data13> .
+<http://example.com/data13> a dcat:Dataset .
+
+:proc1Impl roterms:hasDependency dependencies:digital-preservation-migration-image-imageio-image2bmp .
+######
+    
+
+### Annotations on ports:
+:proc1In roterms:exampleValue [ cnt:chars "1337" ] . 
+## Example value can also be in bytes encoded as base64
+#  roterms:exampleValue [ cnt:bytes "YmluYXJ5IA0KdmFsdWU=" ] .
+## or by reference:
+#  roterms:exampleValue <http://example.com/bigdata.txt> ;
+## or a list of the above: 
+#  roterms:exampleValue ( <http://example.com/data1.txt> 
+#		          [ cnt:chars "value2" ]
+#                         [ cnt:bytes "dmFsdWUz" ] ) 
+
+:procIn2 a roterms:OptionalInput ;
+    roterms:defaultValue [ cnt:chars "uniprot" ] .
+
+
+# Annotations on the format etc. of input and output ports are 
+# really describing the potential artifact that would appear when run.
+# 
+# There's no need to give it a name as a given port
+# can have only a single wfdesc:Artifact 
+:proc1Out wfdesc:hasArtifact [
+    dcterms:format [ a dcterms:IMT ; 
+                     rdf:value "text/plain" ] ;
+    roterms:ofSemanticType <http://example.com/vocab#filenames> ;
+    roterms:ofStructuralType [
+        a ex:MadeUpStructuralType ;
+        ex:regex "^/tmp/.*\n"
+    ] 
+] .
+
+########
+
+
