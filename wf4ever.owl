@@ -161,6 +161,14 @@ To indicate that a particular wfprov:Artifact from a wfprov:WorkflowRun was a fi
     </owl:DatatypeProperty>
     
 
+    <!-- http://purl.org/wf4ever/wf4ever#rootURI -->
+
+    <owl:DatatypeProperty rdf:about="&wf4ever;rootURI">
+        <rdfs:label xml:lang="en">Root URI</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="&wf4ever;serviceURI"/>
+        <rdfs:comment xml:lang="en">The root URI of a web service</rdfs:comment>        
+    </owl:DatatypeProperty>
+
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////

@@ -272,6 +272,80 @@ A value can be provided in different forms: as a resource (just a URI), embedded
     <rdf:Description rdf:about="&cnt;Content">
         <rdfs:subClassOf rdf:resource="&roterms;WorkflowValue"/>
     </rdf:Description>
+    
+    
+    <!-- http://purl.org/wf4ever/roterms#Sketch -->
+
+    <owl:Class rdf:about="&roterms;Sketch">
+        <rdfs:label xml:lang="en">Sketch</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">A graphical representation of an experiment/investigation</rdfs:comment>
+    </owl:Class>
+    
+    <!-- http://purl.org/wf4ever/roterms#Hypothesis -->
+
+    <owl:Class rdf:about="&roterms;Hypothesis">
+        <rdfs:label xml:lang="en">Hypothesis</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">A supposition or proposed explanation made on the basis of limited evidence as a starting point for further investigation</rdfs:comment>
+    </owl:Class>
+    
+    <!-- http://purl.org/wf4ever/roterms#ResearchQuestion -->
+
+    <owl:Class rdf:about="&roterms;ResearchQuestion">
+        <rdfs:label xml:lang="en">Research Question</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">The methodological point of departure of scholarly research in both the natural and social sciences. It determines (i) where and what kind of research the writer will be looking for and (ii) the specific objectives the study or paper will address</rdfs:comment>
+    </owl:Class>
+    
+    <!-- http://purl.org/wf4ever/roterms#Conclusion -->
+
+    <owl:Class rdf:about="&roterms;Conclusion">
+        <rdfs:label xml:lang="en">Conclusions</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">A proposition reached from given premises</rdfs:comment>
+    </owl:Class>
+    
+    <!-- http://purl.org/wf4ever/roterms#Result -->
+
+    <owl:Class rdf:about="&roterms;Result">
+        <rdfs:label xml:lang="en">Result</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">An item of information obtained by experiment or some other scientific method; a quantity or formula obtained by calculation</rdfs:comment>
+    </owl:Class>
+    
+    <!-- http://purl.org/wf4ever/roterms#ExampleRun -->
+
+    <owl:Class rdf:about="&roterms;ExampleRun">
+        <rdfs:label xml:lang="en">Example Workflow Run</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&wfprov;WorkflowRun"/>
+        <rdfs:comment xml:lang="en">A workflow run that serves as an example of how to use this workflow. Example runs typically take only a small subset of inputs and have short execution time.</rdfs:comment>
+    </owl:Class>
+    
+    <!-- http://purl.org/wf4ever/roterms#ProspectiveRun -->
+
+    <owl:Class rdf:about="&roterms;ProspectiveRun">
+        <rdfs:label xml:lang="en">Prospective Workflow Run</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&wfprov;WorkflowRun"/>
+        <rdfs:comment xml:lang="en">A workflow run that is ready to start executing, e.g. all workflow inputs and configuration options have been provided, but no outputs are available yet.</rdfs:comment>
+    </owl:Class>
+    
+    <!-- http://purl.org/wf4ever/roterms#ResultGenerationRun -->
+
+    <owl:Class rdf:about="&roterms;ResultGenerationRun">
+        <rdfs:label xml:lang="en">Results Generating Workflow Run</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&wfprov;WorkflowRun"/>
+        <rdfs:comment xml:lang="en">A workflow run that generated scientific results. Such workflow runs typically take complete data sets as inputs and may take longer to execute.</rdfs:comment>
+    </owl:Class>
+    
+    <!-- http://purl.org/wf4ever/roterms#Paper -->
+
+    <owl:Class rdf:about="&roterms;Paper">
+        <rdfs:label xml:lang="en">Paper</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">A bibliographic resource about an experiment/investigation (to be replaced by dct:BibliographicResource)</rdfs:comment>
+    </owl:Class>
+    
 </rdf:RDF>
 
 
