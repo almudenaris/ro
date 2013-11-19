@@ -67,6 +67,14 @@ This ontology can be further linked to more specific provenance ontologies like 
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+		<!-- http://purl.org/wf4ever/wfprov#durationInSeconds -->
+
+    <owl:DatatypeProperty rdf:about="&wfprov;durationInSeconds">
+    		<rdfs:label xml:lang="en">duration in seconds</rdfs:label>
+    		<rdfs:comment>How long it took to run the workflow (in seconds)</rdfs:comment>
+        <rdfs:domain rdf:resource="&wfprov;WorkflowRun"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
+    </owl:DatatypeProperty>
     
 
 
