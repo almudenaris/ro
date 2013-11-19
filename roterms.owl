@@ -168,6 +168,17 @@ This property does not specify the task (beyond being a skos:Concept), as it is 
     
 
 
+    <!-- http://purl.org/wf4ever/roterms#previousWorkflow -->
+
+    <owl:ObjectProperty rdf:about="&roterms;previousWorkflow">
+    		<rdfs:label xml:lang="en">previous workflow</rdfs:label>
+    		<rdfs:comment>Previous workflow executed</rdfs:comment>
+        <rdfs:domain rdf:resource="&wfdesc;Workflow"/>
+        <rdfs:range rdf:resource="&wfdesc;Workflow"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.org/wf4ever/roterms#requiresDataset -->
 
     <owl:ObjectProperty rdf:about="&roterms;requiresDataset">
@@ -199,6 +210,17 @@ This property does not specify the task (beyond being a skos:Concept), as it is 
     
 
 
+    <!-- http://purl.org/wf4ever/roterms#subsequentWorkflow -->
+
+    <owl:ObjectProperty rdf:about="&roterms;subsequentWorkflow">
+    		<rdfs:label xml:lang="en">subsequent workflow</rdfs:label>
+    		<rdfs:comment>Subsequent workflow executed</rdfs:comment>
+        <rdfs:domain rdf:resource="&wfdesc;Workflow"/>
+        <rdfs:range rdf:resource="&wfdesc;Workflow"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.org/wf4ever/roterms#technicalContact -->
 
     <owl:ObjectProperty rdf:about="&roterms;technicalContact">
@@ -216,6 +238,28 @@ The agent SHOULD have a foaf:name. It SHOULD have one of foaf:mbox, foaf:phone o
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/wf4ever/roterms#sampleSize -->
+
+    <owl:DatatypeProperty rdf:about="&roterms;sampleSize">
+    		<rdfs:label xml:lang="en">sample size</rdfs:label>
+    		<rdfs:comment>e.g., 500 patients  or 500000 lines</rdfs:comment>
+        <rdfs:domain rdf:resource="&wfprov;Artifact"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -226,9 +270,39 @@ The agent SHOULD have a foaf:name. It SHOULD have one of foaf:mbox, foaf:phone o
 
     <!-- http://purl.org/co/Collection -->
 
-    <rdf:Description rdf:about="&co;Collection">
+    <owl:Class rdf:about="&co;Collection">
         <rdfs:subClassOf rdf:resource="&roterms;WorkflowValue"/>
-    </rdf:Description>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roterms#Conclusion -->
+
+    <owl:Class rdf:about="&roterms;Conclusion">
+        <rdfs:label xml:lang="en">Conclusions</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">A proposition reached from given premises</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roterms#ExampleRun -->
+
+    <owl:Class rdf:about="&roterms;ExampleRun">
+        <rdfs:label xml:lang="en">Example Workflow Run</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&wfprov;WorkflowRun"/>
+        <rdfs:comment xml:lang="en">A workflow run that serves as an example of how to use this workflow. Example runs typically take only a small subset of inputs and have short execution time.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roterms#Hypothesis -->
+
+    <owl:Class rdf:about="&roterms;Hypothesis">
+        <rdfs:label xml:lang="en">Hypothesis</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">A supposition or proposed explanation made on the basis of limited evidence as a starting point for further investigation</rdfs:comment>
+    </owl:Class>
     
 
 
@@ -242,6 +316,66 @@ The agent SHOULD have a foaf:name. It SHOULD have one of foaf:mbox, foaf:phone o
 When the value of the optional parameter is not provided, the execution of the associated process may internally assume a value, which can be explicitly described using roterms:defaultParameter.
 </rdfs:comment>
         <rdfs:seeAlso rdf:resource="&roterms;defaultValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roterms#Paper -->
+
+    <owl:Class rdf:about="&roterms;Paper">
+        <rdfs:label xml:lang="en">Paper</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">A bibliographic resource about an experiment/investigation (to be replaced by dct:BibliographicResource)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roterms#ProspectiveRun -->
+
+    <owl:Class rdf:about="&roterms;ProspectiveRun">
+        <rdfs:label xml:lang="en">Prospective Workflow Run</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&wfprov;WorkflowRun"/>
+        <rdfs:comment xml:lang="en">A workflow run that is ready to start executing, e.g. all workflow inputs and configuration options have been provided, but no outputs are available yet.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roterms#ResearchQuestion -->
+
+    <owl:Class rdf:about="&roterms;ResearchQuestion">
+        <rdfs:label xml:lang="en">Research Question</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">The methodological point of departure of scholarly research in both the natural and social sciences. It determines (i) where and what kind of research the writer will be looking for and (ii) the specific objectives the study or paper will address</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roterms#Result -->
+
+    <owl:Class rdf:about="&roterms;Result">
+        <rdfs:label xml:lang="en">Result</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">An item of information obtained by experiment or some other scientific method; a quantity or formula obtained by calculation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roterms#ResultGenerationRun -->
+
+    <owl:Class rdf:about="&roterms;ResultGenerationRun">
+        <rdfs:label xml:lang="en">Results Generating Workflow Run</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&wfprov;WorkflowRun"/>
+        <rdfs:comment xml:lang="en">A workflow run that generated scientific results. Such workflow runs typically take complete data sets as inputs and may take longer to execute.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/wf4ever/roterms#Sketch -->
+
+    <owl:Class rdf:about="&roterms;Sketch">
+        <rdfs:label xml:lang="en">Sketch</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <rdfs:comment xml:lang="en">A graphical representation of an experiment/investigation</rdfs:comment>
     </owl:Class>
     
 
@@ -272,80 +406,6 @@ A value can be provided in different forms: as a resource (just a URI), embedded
     <rdf:Description rdf:about="&cnt;Content">
         <rdfs:subClassOf rdf:resource="&roterms;WorkflowValue"/>
     </rdf:Description>
-    
-    
-    <!-- http://purl.org/wf4ever/roterms#Sketch -->
-
-    <owl:Class rdf:about="&roterms;Sketch">
-        <rdfs:label xml:lang="en">Sketch</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
-        <rdfs:comment xml:lang="en">A graphical representation of an experiment/investigation</rdfs:comment>
-    </owl:Class>
-    
-    <!-- http://purl.org/wf4ever/roterms#Hypothesis -->
-
-    <owl:Class rdf:about="&roterms;Hypothesis">
-        <rdfs:label xml:lang="en">Hypothesis</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
-        <rdfs:comment xml:lang="en">A supposition or proposed explanation made on the basis of limited evidence as a starting point for further investigation</rdfs:comment>
-    </owl:Class>
-    
-    <!-- http://purl.org/wf4ever/roterms#ResearchQuestion -->
-
-    <owl:Class rdf:about="&roterms;ResearchQuestion">
-        <rdfs:label xml:lang="en">Research Question</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
-        <rdfs:comment xml:lang="en">The methodological point of departure of scholarly research in both the natural and social sciences. It determines (i) where and what kind of research the writer will be looking for and (ii) the specific objectives the study or paper will address</rdfs:comment>
-    </owl:Class>
-    
-    <!-- http://purl.org/wf4ever/roterms#Conclusion -->
-
-    <owl:Class rdf:about="&roterms;Conclusion">
-        <rdfs:label xml:lang="en">Conclusions</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
-        <rdfs:comment xml:lang="en">A proposition reached from given premises</rdfs:comment>
-    </owl:Class>
-    
-    <!-- http://purl.org/wf4ever/roterms#Result -->
-
-    <owl:Class rdf:about="&roterms;Result">
-        <rdfs:label xml:lang="en">Result</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
-        <rdfs:comment xml:lang="en">An item of information obtained by experiment or some other scientific method; a quantity or formula obtained by calculation</rdfs:comment>
-    </owl:Class>
-    
-    <!-- http://purl.org/wf4ever/roterms#ExampleRun -->
-
-    <owl:Class rdf:about="&roterms;ExampleRun">
-        <rdfs:label xml:lang="en">Example Workflow Run</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&wfprov;WorkflowRun"/>
-        <rdfs:comment xml:lang="en">A workflow run that serves as an example of how to use this workflow. Example runs typically take only a small subset of inputs and have short execution time.</rdfs:comment>
-    </owl:Class>
-    
-    <!-- http://purl.org/wf4ever/roterms#ProspectiveRun -->
-
-    <owl:Class rdf:about="&roterms;ProspectiveRun">
-        <rdfs:label xml:lang="en">Prospective Workflow Run</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&wfprov;WorkflowRun"/>
-        <rdfs:comment xml:lang="en">A workflow run that is ready to start executing, e.g. all workflow inputs and configuration options have been provided, but no outputs are available yet.</rdfs:comment>
-    </owl:Class>
-    
-    <!-- http://purl.org/wf4ever/roterms#ResultGenerationRun -->
-
-    <owl:Class rdf:about="&roterms;ResultGenerationRun">
-        <rdfs:label xml:lang="en">Results Generating Workflow Run</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&wfprov;WorkflowRun"/>
-        <rdfs:comment xml:lang="en">A workflow run that generated scientific results. Such workflow runs typically take complete data sets as inputs and may take longer to execute.</rdfs:comment>
-    </owl:Class>
-    
-    <!-- http://purl.org/wf4ever/roterms#Paper -->
-
-    <owl:Class rdf:about="&roterms;Paper">
-        <rdfs:label xml:lang="en">Paper</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
-        <rdfs:comment xml:lang="en">A bibliographic resource about an experiment/investigation (to be replaced by dct:BibliographicResource)</rdfs:comment>
-    </owl:Class>
-    
 </rdf:RDF>
 
 
